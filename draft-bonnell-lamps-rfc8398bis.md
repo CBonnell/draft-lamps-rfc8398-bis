@@ -164,7 +164,7 @@ usage of rfc822Name and SmtpUTF8Mailbox is summarized in Table 1
 below.
 
 SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
-MUST NOT contain a Byte-Order-Mark (BOM) {{~RFC3629}} to aid consistency
+MUST NOT contain a Byte-Order-Mark (BOM) {{!RFC3629}} to aid consistency
 across implementations, particularly for comparison.
 
 | local-part char | subjectAltName  |
