@@ -117,9 +117,9 @@ SmtpUTF8Mailbox.  SmtpUTF8Mailbox is a modified version of the
 internationalized Mailbox that was defined in Section 3.3 of
 {{RFC6531}}, which was derived from Mailbox as defined in Section 4.1.2
 of {{RFC5321}}.  {{RFC6531}} defines the following ABNF rules for Mailbox
-whose parts are modified for internationalization: <Local-part>,
-<Dot-string>, <Quoted-string>, <QcontentSMTP>, <Domain>, and <Atom>.
-In particular, <Local-part> was updated to also support UTF8-non-
+whose parts are modified for internationalization: `Local-part`,
+`Dot-string`, `Quoted-string`, `QcontentSMTP`, `Domain`, and `Atom`.
+In particular, `Local-part` was updated to also support UTF8-non-
 ascii.  UTF8-non-ascii was described by Section 3.1 of {{RFC6532}}.
 Also, domain was extended to support U-labels, as defined in
 {{RFC5890}}.
@@ -139,7 +139,7 @@ letters.  NR-LDH stands for "Non-Reserved Letters Digits Hyphen" and
 is the set of LDH labels that do not have "--" characters in the
 third and forth character position, which excludes "tagged domain
 names" such as A-labels.  Consistent with the treatment of rfc822Name
-in {{RFC5280}}, SmtpUTF8Mailbox is an envelope <Mailbox> and has no
+in {{RFC5280}}, SmtpUTF8Mailbox is an envelope `Mailbox` and has no
 phrase (such as a common name) before it, has no comment (text
 surrounded in parentheses) after it, and is not surrounded by "<" and
 ">" characters.
@@ -208,7 +208,7 @@ letters.  In setup for SmtpUTF8Mailbox, the email address local-part
 MUST conform to the requirements of {{RFC6530}} and {{RFC6531}},
 including being a string in UTF-8 form.  In particular, the local-
 part MUST NOT be transformed in any way, such as by doing case
-folding or normalization of any kind.  The <Local-part> part of an
+folding or normalization of any kind.  The `Local-part` part of an
 internationalized email address is already in UTF-8.  For rfc822Name,
 the local-part, which is IA5String (ASCII), trivially maps to UTF-8
 without change.  Once setup is complete, they are again compared
