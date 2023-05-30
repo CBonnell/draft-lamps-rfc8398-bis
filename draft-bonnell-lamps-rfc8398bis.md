@@ -164,7 +164,7 @@ usage of rfc822Name and SmtpUTF8Mailbox is summarized in Table 1
 below.
 
 SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
-MUST NOT contain a Byte-Order-Mark (BOM) {{RFC3629}} to aid consistency
+MUST NOT contain a Byte-Order-Mark (BOM) {{~RFC3629}} to aid consistency
 across implementations, particularly for comparison.
 
 | local-part char | subjectAltName  |
@@ -206,8 +206,7 @@ labels that include non-ASCII characters to be transformed to
 A-labels if not already in that form.  The first step is to detect
 use of the U-label by using Section 5.1 of {{!RFC5891}}.  Next, if
 necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
-specified in Section 5.5 of {{RFC5891}}.  Finally, if necessary,
-convert the Unicode to UTF-8 as specified in Section 3 of {{!RFC3629}}.
+specified in Section 5.5 of {{RFC5891}}.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
 letters.  In setup for SmtpUTF8Mailbox, the email address local-part
 MUST conform to the requirements of {{!RFC6530}} and {{RFC6531}},
