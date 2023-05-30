@@ -1264,15 +1264,20 @@ section specifies the SmtpUTF8Mailbox name form of otherName so that
 internationalized email addresses can appear in the subjectAltName of
 a certificate, the issuerAltName of a certificate, or anywhere else
 that GeneralName is used.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
+<div class="alignLeft art-text artwork" id="section-3-2">
+<pre>
+id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
+
+SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 -- SmtpUTF8Mailbox conforms to Mailbox as specified
 -- in Section 3.3 of RFC 6531. Additionally, all domain
 -- labels included in the SmtpUTF8Mailbox value are
 -- encoded as LDH-labels. In particular, domain labels
 -- are not encoded as U-labels and instead are encoded
--- using their A-label representation.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">When the subjectAltName (or issuerAltName) extension contains an
+-- using their A-label representation.
+</pre><a href="#section-3-2" class="pilcrow">¶</a>
+</div>
+<p id="section-3-3">When the subjectAltName (or issuerAltName) extension contains an
 internationalized email address with a non-ASCII local-part, the
 address <span class="bcp14">MUST</span> be stored in the SmtpUTF8Mailbox name form of otherName.
 The format of SmtpUTF8Mailbox is defined as the ABNF rule
@@ -1285,8 +1290,8 @@ whose parts are modified for internationalization: <code>Local-part</code>,
 In particular, <code>Local-part</code> was updated to also support UTF8-non-
 ascii.  UTF8-non-ascii was described by Section 3.1 of <span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>.
 Also, domain was extended to support U-labels, as defined in
-<span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">This document further refines internationalized Mailbox ABNF rules as
+<span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">This document further refines internationalized Mailbox ABNF rules as
 described in <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span> and calls this SmtpUTF8Mailbox.  In
 SmtpUTF8Mailbox, labels that include non-ASCII characters <span class="bcp14">MUST</span> be
 stored in A-label (rather than U-label) form <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.  This
@@ -1302,18 +1307,18 @@ names" such as A-labels.  Consistent with the treatment of rfc822Name
 in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, SmtpUTF8Mailbox is an envelope <code>Mailbox</code> and has no
 phrase (such as a common name) before it, has no comment (text
 surrounded in parentheses) after it, and is not surrounded by "&lt;" and
-"&gt;" characters.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">Due to name constraint compatibility reasons described in {name-constraints},
+"&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">Due to name constraint compatibility reasons described in {name-constraints},
 SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the local-part
 of the email address contains non-ASCII characters.  When the local-
 part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
 usage of rfc822Name and SmtpUTF8Mailbox is summarized in Table 1
-below.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
+below.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-6">SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
 <span class="bcp14">MUST NOT</span> contain a Byte-Order-Mark (BOM) <span>[<a href="#RFC3629" class="cite xref">RFC3629</a>]</span> to aid consistency
-across implementations, particularly for comparison.<a href="#section-3-7" class="pilcrow">¶</a></p>
+across implementations, particularly for comparison.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <span id="name-email-address-formatting"></span><div id="santypes">
 <table class="center" id="table-1">
         <caption>
@@ -1338,7 +1343,7 @@ across implementations, particularly for comparison.<a href="#section-3-7" class
         </tbody>
       </table>
 </div>
-<p id="section-3-9">Non-ASCII local-part values may additionally include ASCII characters.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-8">Non-ASCII local-part values may additionally include ASCII characters.<a href="#section-3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="idna2008">
