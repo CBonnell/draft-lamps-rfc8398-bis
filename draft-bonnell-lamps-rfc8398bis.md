@@ -35,6 +35,8 @@ keyword:
  - EAI
  - PKIX
  - email address
+updates: 5820
+obsoletes: 8398
 venue:
   group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
   type: "Working Group"
@@ -57,6 +59,12 @@ author:
     email: corey.bonnell@digicert.com
 
 normative:
+  RFC8399BIS:
+    author:
+      - ins: R. Housley
+        name: R. Housley
+    target: https://datatracker.ietf.org/doc/draft-housley-lamps-rfc8399bis/
+    title: Internationalization Updates to RFC 5280 
 
 informative:
   WEBER:
@@ -236,7 +244,7 @@ subject alternative names rfc822Name and SmtpUTF8Mailbox.
 Both rfc822Name and SmtpUTF8Mailbox subject alternative names
 represent the same underlying email address namespace.  Since legacy
 CAs constrained to issue certificates for a specific set of domains
-would lack corresponding UTF-8 constraints, {{RFC8399}} updates,
+would lack corresponding UTF-8 constraints, {{RFC8399BIS}} updates,
 modifies, and extends rfc822Name name constraints defined in
 {{RFC5280}} to cover SmtpUTF8Mailbox subject alternative names.  This
 ensures that the introduction of SmtpUTF8Mailbox does not violate
@@ -244,7 +252,7 @@ existing name constraints.  Since it is not valid to include
 non-ASCII UTF-8 characters in the local-part of rfc822Name name
 constraints, and since name constraints that include a local-part are
 rarely, if at all, used in practice, name constraints updated in
-{{RFC8399}} allow the forms that represent all addresses at a host or
+{{RFC8399BIS}} allow the forms that represent all addresses at a host or
 all mailboxes in a domain and deprecates rfc822Name name constraints
 that represent a particular mailbox.  That is, rfc822Name constraints
 with a local-part SHOULD NOT be used.
