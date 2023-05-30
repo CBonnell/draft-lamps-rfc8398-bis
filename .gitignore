@@ -17,7 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-lamps-rfc8398-bis.xml
+draft-bonnell-lamps-rfc8398bis.xml
 package-lock.json
 report.xml
 !requirements.txt
