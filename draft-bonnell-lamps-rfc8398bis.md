@@ -107,7 +107,11 @@ id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
 
 SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 -- SmtpUTF8Mailbox conforms to Mailbox as specified
--- in Section 3.3 of RFC 6531.
+-- in Section 3.3 of RFC 6531. Additionally, all domain
+-- labels included in the SmtpUTF8Mailbox value are
+-- encoded as LDH-labels. In particular, domain labels
+-- are not encoded as U-labels and instead are encoded
+-- using their A-label representation.
 
 When the subjectAltName (or issuerAltName) extension contains an
 internationalized email address with a non-ASCII local-part, the
@@ -127,13 +131,11 @@ Also, domain was extended to support U-labels, as defined in
 This document further refines internationalized Mailbox ABNF rules as
 described in {{RFC6531}} and calls this SmtpUTF8Mailbox.  In
 SmtpUTF8Mailbox, labels that include non-ASCII characters MUST be
-stored in U-label (rather than A-label) form {{RFC5890}}.  This
-restriction removes the need to determine which label encoding, A- or
-U-label, is present in the domain.  As per Section 2.3.2.1 of
-{{RFC5890}}, U-labels are encoded as UTF-8 {{RFC3629}} in Normalization
-Form C and other properties specified there.  In SmtpUTF8Mailbox,
-domain labels that solely use ASCII characters (meaning neither A-
-nor U-labels) SHALL use NR-LDH restrictions as specified by
+stored in A-label (rather than U-label) form {{RFC5890}}.  This
+restriction reduces complexity for implementations of the certification
+path validation algorithm defined in Section 6 of {{RFC5280}}.  In
+SmtpUTF8Mailbox, domain labels that solely use ASCII characters (meaning
+neither A- nor U-labels) SHALL use NR-LDH restrictions as specified by
 Section 2.3.1 of {{RFC5890}} and SHALL be restricted to lowercase
 letters.  NR-LDH stands for "Non-Reserved Letters Digits Hyphen" and
 is the set of LDH labels that do not have "--" characters in the
@@ -144,7 +146,7 @@ phrase (such as a common name) before it, has no comment (text
 surrounded in parentheses) after it, and is not surrounded by "<" and
 ">" characters.
 
-Due to name constraint compatibility reasons described in Section 6,
+Due to name constraint compatibility reasons described in {name-constraints},
 SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the local-part
 of the email address contains non-ASCII characters.  When the local-
 part is ASCII, rfc822Name subjectAltName MUST be used instead of
@@ -157,14 +159,12 @@ SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
 MUST NOT contain a Byte-Order-Mark (BOM) {{RFC3629}} to aid consistency
 across implementations, particularly for comparison.
 
-| local-part char | domain char | domain label |  subjectAltName |
-|-----------------|-------------|--------------|-----------------|
-|    ASCII-only   |  ASCII-only | NR-LDH label |    rfc822Name   |
-|    non-ASCII    |  ASCII-only | NR-LDH label | SmtpUTF8Mailbox |
-|    ASCII-only   |  non-ASCII  |   A-label    |    rfc822Name   |
-|    non-ASCII    |  non-ASCII  |   U-label    | SmtpUTF8Mailbox |
+| local-part char | subjectAltName  |
+|-----------------|-----------------|
+|    ASCII-only   |    rfc822Name   |
+|    non-ASCII    | SmtpUTF8Mailbox |
 
-Non-ASCII may additionally include ASCII characters.
+Non-ASCII local-part values may additionally include ASCII characters.
 
 # IDNA2008
 
@@ -178,17 +178,14 @@ anywhere else that these are used.
 
 # Matching of Internationalized Email Addresses in X.509 Certificates
 
-In equivalence comparison with SmtpUTF8Mailbox, there may be some
-setup work on one or both inputs depending on whether the input is
-already in comparison form.  Comparing SmtpUTF8Mailboxes consists of
+Equivalence comparisons with SmtpUTF8Mailbox consist of
 a domain part step and a local-part step.  The comparison form for
 local-parts is always UTF-8.  The comparison form for domain parts
-depends on context.  While some contexts such as certificate path
-validation in {{RFC5280}} specify transforming domain to A-label
-(Sections 7.2 and 7.5 in {{RFC5280}} as updated by {{!RFC8399}}), this
-document recommends transforming to UTF-8 U-label instead.  This
-reduces the likelihood of errors by reducing conversions as more
-implementations natively support U-label domains.
+is always performed with the LDH-label ({{RFC5890}}) encoding of the
+relevant domain labels. The comparison of LDH-labels in domain parts
+reduces complexity for implementations of the certification path
+validation algorithm as defined Section 6 of {{RFC5280}} by obviating
+the need to convert domain labels to their Unicode representation.
 
 Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
 work needed.  They are considered equivalent if there is an exact
@@ -198,10 +195,10 @@ setup steps for domain part and local-part.  The initial preparation
 for the email addresses is to remove any phrases, comments, and "<"
 or ">" characters.  This document calls for comparison of domain
 labels that include non-ASCII characters to be transformed to
-U-labels if not already in that form.  The first step is to detect
-use of the A-label by using Section 5.1 of {{!RFC5891}}.  Next, if
-necessary, transform any A-labels (US-ASCII) to U-labels (Unicode) as
-specified in Section 5.2 of {{RFC5891}}.  Finally, if necessary,
+A-labels if not already in that form.  The first step is to detect
+use of the U-label by using Section 5.1 of {{!RFC5891}}.  Next, if
+necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
+specified in Section 5.5 of {{RFC5891}}.  Finally, if necessary,
 convert the Unicode to UTF-8 as specified in Section 3 of {{!RFC3629}}.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
 letters.  In setup for SmtpUTF8Mailbox, the email address local-part
@@ -217,7 +214,7 @@ octet for octet.
 To summarize non-normatively, the comparison steps, including setup,
 are:
 
-1.  If the domain contains A-labels, transform them to U-labels.
+1.  If the domain contains U-labels, transform them to A-labels.
 2.  If the domain contains ASCII NR-LDH labels, lowercase them.
 3.  Compare strings octet for octet for equivalence.
 
@@ -228,7 +225,7 @@ addresses through SmtpUTF8Mailbox, the certificate MUST use multiple
 subjectAltNames or issuerAltNames to explicitly carry any additional
 email addresses.
 
-# Name Constraints in Path Validation
+# Name Constraints in Path Validation {#name-constraints}
 
 This section updates Section 4.2.1.10 of {{RFC5280}} to extend
 rfc822Name name constraints to SmtpUTF8Mailbox subjectAltNames.
@@ -256,9 +253,8 @@ Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
 the setup steps defined by Section 5.  Setup converts the inputs of
 the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
-rfc822Name name constraint) to constraint comparison form.  For an
-rfc822Name name constraint, this will convert any domain A-labels to
-U-labels.  For both the name constraint and the subject, this will
+rfc822Name name constraint) to constraint comparison form. For both the
+name constraint and the subject, this will
 lowercase any domain NR-LDH labels.  Strip the local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
@@ -289,7 +285,6 @@ encoded as rfc822Name despite also having Unicode present in the
 domain.
 
 ~~~
-
    +-------------------------------------------------------------------+
    |  Root CA Cert                                                     |
    +-------------------------------------------------------------------+
@@ -313,7 +308,7 @@ domain.
    |        (1)                                                        |
    |                                                                   |
    |      rfc822Name: student@xn--pss25c.example.com (2)               |
-   |      SmtpUTF8Mailbox: u+533Bu+751F@u+5927u+5B66.example.com (2)   |
+   |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
    |                                                                   |
    +-------------------------------------------------------------------+
 ~~~
@@ -331,6 +326,21 @@ recipient.  The former document references some means to mitigate
 against these attacks.  See {{WEBER}} for more background on security
 issues with Unicode.
 
+# Differences from RFC 8398
+
+This document obsoletes {{!RFC8398}}. There are three major changes
+defined in this specification which deviate from {{RFC8398}}:
+
+1. In all cases, domain labels in mail addresses SHALL be encoded as
+LDH-labels. In particular, domain names SHALL NOT be encoded using
+U-Labels and instead use A-Labels.
+2. To accommodate the first change listed above, the mail address
+matching algorithm defined in Section 5 of {{RFC8398}} has been modified
+to only accept domain labels that are encoded using their A-label
+representation.
+3. Additionally, the name constraints processing algorithm defined in
+Section 6 of {{RFC8398}} has been modified to only accept domain labels
+that are encoded using their A-label representation.
 
 # IANA Considerations
 
@@ -381,8 +391,12 @@ on-SmtpUTF8Mailbox OTHER-NAME ::= {
 id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
 
 SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
-  -- SmtpUTF8Mailbox conforms to Mailbox as specified
-  -- in Section 3.3 of RFC 6531.
+-- SmtpUTF8Mailbox conforms to Mailbox as specified
+-- in Section 3.3 of RFC 6531. Additionally, all domain
+-- labels included in the SmtpUTF8Mailbox value are
+-- encoded as LDH-Labels. In particular, domain labels
+-- are not encoded as U-Labels and instead are encoded
+-- using their A-label representation.
 
 END
 
@@ -392,22 +406,22 @@ END
 
 This non-normative example demonstrates using SmtpUTF8Mailbox as an
 otherName in GeneralName to encode the email address
-"u+533Bu+751F@u+5927u+5B66.example.com".
+"医生@xn--pss25c.example.com".
 
 The hexadecimal DER encoding of the block is:
 
 ~~~
-a0330608 2b060105 05070809 a0270c25 c3a5c28c c2bbc3a7 c294c29f
-40c3a5c2 a4c2a7c3 a5c2adc2 a62e6578 616d706c 652e636f 6d
+a02b0608 2b060105 05070809 a01f0c1d e58cbbe7 949f4078 6e2d2d70
+73733235 632e6578 616d706c 652e636f 6d
 ~~~
 
 The text decoding is:
 
 ~~~
-  2  51: [0] {
-  4   8:   OBJECT IDENTIFIER '1 3 6 1 5 5 7 8 9'
-14  39:   [0] {
-16  37:     UTF8String '..@...example.com'
+0  43: [0] {
+2   8:   OBJECT IDENTIFIER '1 3 6 1 5 5 7 8 9'
+12  31:   [0] {
+14  29:     UTF8String '医生@xn--pss25c.example.com'
       :     }
       :   }
 ~~~
@@ -419,4 +433,19 @@ program.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+TODO
+
+Previous document:
+
+Thank you to Magnus Nystrom for motivating this document.  Thanks to
+Russ Housley, Nicolas Lidzborski, Laetitia Baudoin, Ryan Sleevi, Sean
+Leonard, Sean Turner, John Levine, and Patrik Falstrom for their
+feedback.  Also special thanks to John Klensin for his valuable input
+on internationalization, Unicode, and ABNF formatting; to Jim Schaad
+for his help with the ASN.1 example and his helpful feedback; and
+especially to Viktor Dukhovni for helping us with name constraints
+and his many detailed document reviews.
+
+This document:
+
+David Benjamin 
