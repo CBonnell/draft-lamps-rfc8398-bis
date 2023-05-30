@@ -64,7 +64,7 @@ normative:
       - ins: R. Housley
         name: R. Housley
     target: https://datatracker.ietf.org/doc/draft-housley-lamps-rfc8399bis/
-    title: Internationalization Updates to RFC 5280 
+    title: Internationalization Updates to RFC 5280
 
 informative:
   WEBER:
@@ -456,4 +456,4 @@ and his many detailed document reviews.
 
 This document:
 
-David Benjamin 
+David Benjamin
