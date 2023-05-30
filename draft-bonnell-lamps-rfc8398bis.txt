@@ -536,14 +536,23 @@ Authors' Addresses
 
    Alexey Melnikov
    Isode Ltd
+   14 Castle Mews
+   Hampton
+   TW12 2NP
+   United Kingdom
    Email: Alexey.Melnikov@isode.com
 
 
    Wei Chuang
    Google, Inc.
+   1600 Amphitheater Parkway
+   Mountain View, CA
+   United States of America
    Email: weihaw@google.com
 
 
    Corey Bonnell
    DigiCert
+   Pittsburgh, PA
+   United States of America
    Email: corey.bonnell@digicert.com
