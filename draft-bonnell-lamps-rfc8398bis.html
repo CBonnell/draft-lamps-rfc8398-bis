@@ -13,7 +13,7 @@
 field of an X.509 Subject Alternative Name and Issuer Alternative
 Name extension that allows a certificate subject to be associated
 with an internationalized email address. 
-       This document updates RFC 5280. 
+       This document updates RFC 5280 and obsoletes RFC 8398. 
     " name="description">
 <meta content="xml2rfc 3.17.1" name="generator">
 <meta content="EAI" name="keyword">
@@ -1101,7 +1101,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 field of an X.509 Subject Alternative Name and Issuer Alternative
 Name extension that allows a certificate subject to be associated
 with an internationalized email address.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This document updates RFC 5280.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document updates RFC 5280 and obsoletes RFC 8398.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1203,10 +1203,16 @@ with an internationalized email address.<a href="#section-abstract-1" class="pil
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-asn1-module" class="internal xref">ASN.1 Module</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-example-of-smtputf8mailbox" class="internal xref">Example of SmtpUTF8Mailbox</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1466,6 +1472,36 @@ rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  Note that an email address with ASCII-only local-part is
 encoded as rfc822Name despite also having Unicode present in the
 domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6-6">
+<pre>
+   +-------------------------------------------------------------------+
+   |  Root CA Cert                                                     |
+   +-------------------------------------------------------------------+
+                                     |
+                                     v
+   +-------------------------------------------------------------------+
+   |  Intermediate CA Cert                                             |
+   |      Permitted                                                    |
+   |        rfc822Name: elementary.school.example.com (1)              |
+   |                                                                   |
+   |        rfc822Name: xn--pss25c.example.com (2)                     |
+   |                                                                   |
+   +-------------------------------------------------------------------+
+                                     |
+                                     v
+   +-------------------------------------------------------------------+
+   |  Entity Cert (w/explicitly permitted subjects)                    |
+   |    SubjectAltName Extension                                       |
+   |      rfc822Name: student@elemenary.school.example.com (1)         |
+   |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
+   |        (1)                                                        |
+   |                                                                   |
+   |      rfc822Name: student@xn--pss25c.example.com (2)               |
+   |      SmtpUTF8Mailbox: u+533Bu+751F@u+5927u+5B66.example.com (2)   |
+   |                                                                   |
+   +-------------------------------------------------------------------+
+</pre><a href="#section-6-6" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="security-considerations">
@@ -1474,22 +1510,23 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-7-1">Use of SmtpUTF8Mailbox for certificate subjectAltName (and
-   issuerAltName) will incur many of the same security considerations as
-   in Section 8 in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, but it introduces a new issue by
-   permitting non-ASCII characters in the email address local-part.
-   This issue, as mentioned in Section 4.4 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span> and in Section 4
-   of <span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>, is that use of Unicode introduces the risk of visually
-   similar and identical characters that can be exploited to deceive the
-   recipient.  The former document references some means to mitigate
-   against these attacks.  See <span>[<a href="#WEBER" class="cite xref">WEBER</a>]</span> for more background on security
-   issues with Unicode.<a href="#section-7-1" class="pilcrow">¶</a></p>
+issuerAltName) will incur many of the same security considerations as
+in Section 8 in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, but it introduces a new issue by
+permitting non-ASCII characters in the email address local-part.
+This issue, as mentioned in Section 4.4 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span> and in Section 4
+of <span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>, is that use of Unicode introduces the risk of visually
+similar and identical characters that can be exploited to deceive the
+recipient.  The former document references some means to mitigate
+against these attacks.  See <span>[<a href="#WEBER" class="cite xref">WEBER</a>]</span> for more background on security
+issues with Unicode.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
 <section id="section-8">
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
-    </h2>
+      </h2>
+<p id="section-8-1">There are no IANA Considerations for this document.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-9">
@@ -1525,6 +1562,10 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Klensin, J.</span>, <span class="refTitle">"Internationalized Domain Names in Applications (IDNA): Protocol"</span>, <span class="seriesInfo">RFC 5891</span>, <span class="seriesInfo">DOI 10.17487/RFC5891</span>, <time datetime="2010-08" class="refDate">August 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5891">https://www.rfc-editor.org/rfc/rfc5891</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC5912">[RFC5912]</dt>
+        <dd>
+<span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">J. Schaad</span>, <span class="refTitle">"New ASN.1 Modules for the Public Key Infrastructure Using X.509 (PKIX)"</span>, <span class="seriesInfo">RFC 5912</span>, <span class="seriesInfo">DOI 10.17487/RFC5912</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5912">https://www.rfc-editor.org/rfc/rfc5912</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6530">[RFC6530]</dt>
         <dd>
 <span class="refAuthor">Klensin, J.</span> and <span class="refAuthor">Y. Ko</span>, <span class="refTitle">"Overview and Framework for Internationalized Email"</span>, <span class="seriesInfo">RFC 6530</span>, <span class="seriesInfo">DOI 10.17487/RFC6530</span>, <time datetime="2012-02" class="refDate">February 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6530">https://www.rfc-editor.org/rfc/rfc6530</a>&gt;</span>. </dd>
@@ -1559,16 +1600,102 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 </dl>
 </section>
 </section>
-<div id="acknowledgments">
+<div id="asn1-module">
 <section id="appendix-A">
+      <h2 id="name-asn1-module">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-asn1-module" class="section-name selfRef">ASN.1 Module</a>
+      </h2>
+<p id="appendix-A-1">The following ASN.1 module normatively specifies the SmtpUTF8Mailbox
+structure.  This specification uses the ASN.1 definitions from
+<span>[<a href="#RFC5912" class="cite xref">RFC5912</a>]</span> with the 2002 ASN.1 notation used in that document.
+<span>[<a href="#RFC5912" class="cite xref">RFC5912</a>]</span> updates normative documents using older ASN.1 notation.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-2">
+<pre>
+LAMPS-EaiAddresses-2016
+{ iso(1) identified-organization(3) dod(6)
+  internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
+  id-mod-lamps-eai-addresses-2016(92) }
+
+DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+
+IMPORTS
+OTHER-NAME
+FROM PKIX1Implicit-2009
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+  mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+
+id-pkix
+FROM PKIX1Explicit-2009
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+  mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) } ;
+
+--
+-- otherName carries additional name types for subjectAltName,
+-- issuerAltName, and other uses of GeneralNames.
+--
+
+id-on OBJECT IDENTIFIER ::= { id-pkix 8 }
+
+SmtpUtf8OtherNames OTHER-NAME ::= { on-SmtpUTF8Mailbox, ... }
+
+on-SmtpUTF8Mailbox OTHER-NAME ::= {
+    SmtpUTF8Mailbox IDENTIFIED BY id-on-SmtpUTF8Mailbox
+}
+
+id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
+
+SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
+  -- SmtpUTF8Mailbox conforms to Mailbox as specified
+  -- in Section 3.3 of RFC 6531.
+
+END
+
+</pre><a href="#appendix-A-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="example-of-smtputf8mailbox">
+<section id="appendix-B">
+      <h2 id="name-example-of-smtputf8mailbox">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-example-of-smtputf8mailbox" class="section-name selfRef">Example of SmtpUTF8Mailbox</a>
+      </h2>
+<p id="appendix-B-1">This non-normative example demonstrates using SmtpUTF8Mailbox as an
+otherName in GeneralName to encode the email address
+"u+533Bu+751F@u+5927u+5B66.example.com".<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">The hexadecimal DER encoding of the block is:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-B-3">
+<pre>
+a0330608 2b060105 05070809 a0270c25 c3a5c28c c2bbc3a7 c294c29f
+40c3a5c2 a4c2a7c3 a5c2adc2 a62e6578 616d706c 652e636f 6d
+</pre><a href="#appendix-B-3" class="pilcrow">¶</a>
+</div>
+<p id="appendix-B-4">The text decoding is:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-B-5">
+<pre>
+  2  51: [0] {
+  4   8:   OBJECT IDENTIFIER '1 3 6 1 5 5 7 8 9'
+14  39:   [0] {
+16  37:     UTF8String '..@...example.com'
+      :     }
+      :   }
+</pre><a href="#appendix-B-5" class="pilcrow">¶</a>
+</div>
+<p id="appendix-B-6">The example was encoded on the OSS Nokalva ASN.1 Playground and the
+above text decoding is an output of Peter Gutmann's "dumpasn1"
+program.<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
