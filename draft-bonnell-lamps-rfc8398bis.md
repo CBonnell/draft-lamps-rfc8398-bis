@@ -434,7 +434,7 @@ The text decoding is:
       :   }
 ~~~
 
-The example was encoded on the OSS Nokalva ASN.1 Playground and the
+The example was encoded using Google's "der-ascii" program and the
 above text decoding is an output of Peter Gutmann's "dumpasn1"
 program.
 
