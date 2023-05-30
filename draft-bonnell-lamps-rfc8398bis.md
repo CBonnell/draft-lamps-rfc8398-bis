@@ -43,15 +43,15 @@ venue:
   github: "CBonnell/draft-lamps-rfc8398-bis"
   latest: "https://CBonnell.github.io/draft-lamps-rfc8398-bis/draft-bonnell-lamps-rfc8398bis.html"
 author:
-- 
+  - 
     fullname: Alexey Melnikov
     organization: Isode Ltd
     email: Alexey.Melnikov@isode.com
-- 
+  - 
     fullname: Wei Chuang
     organization: Google, Inc.
     email: weihaw@google.com
- -
+  -
     fullname: Corey Bonnell
     organization: DigiCert
     email: corey.bonnell@digicert.com
