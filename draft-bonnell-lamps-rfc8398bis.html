@@ -1278,7 +1278,7 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 </pre><a href="#section-3-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3-3">When the subjectAltName (or issuerAltName) extension contains an
-internationalized email address with a non-ASCII local-part, the
+internationalized email address with a non-ASCII Local-part, the
 address <span class="bcp14">MUST</span> be stored in the SmtpUTF8Mailbox name form of otherName.
 The format of SmtpUTF8Mailbox is defined as the ABNF rule
 SmtpUTF8Mailbox.  SmtpUTF8Mailbox is a modified version of the
@@ -1287,10 +1287,10 @@ internationalized Mailbox that was defined in Section 3.3 of
 of <span>[<a href="#RFC5321" class="cite xref">RFC5321</a>]</span>.  <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span> defines the following ABNF rules for Mailbox
 whose parts are modified for internationalization: <code>Local-part</code>,
 <code>Dot-string</code>, <code>Quoted-string</code>, <code>QcontentSMTP</code>, <code>Domain</code>, and <code>Atom</code>.
-In particular, <code>Local-part</code> was updated to also support UTF8-non-
-ascii.  UTF8-non-ascii was described by Section 3.1 of <span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>.
-Also, domain was extended to support U-labels, as defined in
-<span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+In particular, <code>Local-part</code> was updated to also support
+UTF8-non-ascii.  UTF8-non-ascii was described by Section 3.1 of
+<span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>. Also, domain was extended to support U-labels, as defined
+in <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">This document further refines internationalized Mailbox ABNF rules as
 described in <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span> and calls this SmtpUTF8Mailbox.  In
 SmtpUTF8Mailbox, labels that include non-ASCII characters <span class="bcp14">MUST</span> be
@@ -1309,7 +1309,7 @@ phrase (such as a common name) before it, has no comment (text
 surrounded in parentheses) after it, and is not surrounded by "&lt;" and
 "&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Due to name constraint compatibility reasons described in <a href="#name-constraints" class="auto internal xref">Section 6</a>,
-SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the local-part
+SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the Local-part
 of the email address contains non-ASCII characters.  When the local-
 part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
@@ -1327,7 +1327,7 @@ across implementations, particularly for comparison.<a href="#section-3-6" class
         </caption>
 <thead>
           <tr>
-            <th class="text-left" rowspan="1" colspan="1">local-part char</th>
+            <th class="text-left" rowspan="1" colspan="1">Local-part char</th>
             <th class="text-left" rowspan="1" colspan="1">subjectAltName</th>
           </tr>
         </thead>
@@ -1343,7 +1343,7 @@ across implementations, particularly for comparison.<a href="#section-3-6" class
         </tbody>
       </table>
 </div>
-<p id="section-3-8">Non-ASCII local-part values may additionally include ASCII characters.<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-8">Non-ASCII Local-part values may additionally include ASCII characters.<a href="#section-3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="idna2008">
@@ -1366,8 +1366,8 @@ anywhere else that these are used.<a href="#section-4-1" class="pilcrow">¶</a><
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-matching-of-internationaliz" class="section-name selfRef">Matching of Internationalized Email Addresses in X.509 Certificates</a>
       </h2>
 <p id="section-5-1">Equivalence comparisons with SmtpUTF8Mailbox consist of
-a domain part step and a local-part step.  The comparison form for
-local-parts is always UTF-8.  The comparison form for domain parts
+a domain part step and a Local-part step.  The comparison form for
+Local-parts is always UTF-8.  The comparison form for domain parts
 is always performed with the LDH-label (<span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>) encoding of the
 relevant domain labels. The comparison of LDH-labels in domain parts
 reduces complexity for implementations of the certification path
@@ -1377,7 +1377,7 @@ the need to convert domain labels to their Unicode representation.<a href="#sect
 work needed.  They are considered equivalent if there is an exact
 octet-for-octet match.  Comparison with email addresses such as
 internationalized email address or rfc822Name requires additional
-setup steps for domain part and local-part.  The initial preparation
+setup steps for domain part and Local-part.  The initial preparation
 for the email addresses is to remove any phrases, comments, and "&lt;"
 or "&gt;" characters.  This document calls for comparison of domain
 labels that include non-ASCII characters to be transformed to
@@ -1386,13 +1386,13 @@ use of the U-label by using Section 5.1 of <span>[<a href="#RFC5891" class="cite
 necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
 specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
-letters.  In setup for SmtpUTF8Mailbox, the email address local-part
+letters.  In setup for SmtpUTF8Mailbox, the email address Local-part
 <span class="bcp14">MUST</span> conform to the requirements of <span>[<a href="#RFC6530" class="cite xref">RFC6530</a>]</span> and <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span>,
 including being a string in UTF-8 form.  In particular, the local-
 part <span class="bcp14">MUST NOT</span> be transformed in any way, such as by doing case
 folding or normalization of any kind.  The <code>Local-part</code> part of an
 internationalized email address is already in UTF-8.  For rfc822Name,
-the local-part, which is IA5String (ASCII), trivially maps to UTF-8
+the Local-part, which is IA5String (ASCII), trivially maps to UTF-8
 without change.  Once setup is complete, they are again compared
 octet for octet.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">To summarize non-normatively, the comparison steps, including setup,
@@ -1431,20 +1431,20 @@ modifies, and extends rfc822Name name constraints defined in
 <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> to cover SmtpUTF8Mailbox subject alternative names.  This
 ensures that the introduction of SmtpUTF8Mailbox does not violate
 existing name constraints.  Since it is not valid to include
-non-ASCII UTF-8 characters in the local-part of rfc822Name name
-constraints, and since name constraints that include a local-part are
+non-ASCII UTF-8 characters in the Local-part of rfc822Name name
+constraints, and since name constraints that include a Local-part are
 rarely, if at all, used in practice, name constraints updated in
 <span>[<a href="#RFC8399BIS" class="cite xref">RFC8399BIS</a>]</span> allow the forms that represent all addresses at a host or
 all mailboxes in a domain and deprecates rfc822Name name constraints
 that represent a particular mailbox.  That is, rfc822Name constraints
-with a local-part <span class="bcp14">SHOULD NOT</span> be used.<a href="#section-6-2" class="pilcrow">¶</a></p>
+with a Local-part <span class="bcp14">SHOULD NOT</span> be used.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
 the setup steps defined by Section 5.  Setup converts the inputs of
 the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
 name constraint and the subject, this will
-lowercase any domain NR-LDH labels.  Strip the local-part and "@"
+lowercase any domain NR-LDH labels.  Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> as follows.  If the resulting name
@@ -1467,7 +1467,7 @@ rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  The second example (2) illustrates a permitted rfc822Name
 host name name constraint with A-label, and the corresponding valid
 rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
-addresses.  Note that an email address with ASCII-only local-part is
+addresses.  Note that an email address with ASCII-only Local-part is
 encoded as rfc822Name despite also having Unicode present in the
 domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <span id="name-name-constraints-with-smtpu"></span><div id="nctypes">
@@ -1516,7 +1516,7 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-7-1">Use of SmtpUTF8Mailbox for certificate subjectAltName (and
 issuerAltName) will incur many of the same security considerations as
 in Section 8 in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, but it introduces a new issue by
-permitting non-ASCII characters in the email address local-part.
+permitting non-ASCII characters in the email address Local-part.
 This issue, as mentioned in Section 4.4 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span> and in Section 4
 of <span>[<a href="#RFC6532" class="cite xref">RFC6532</a>]</span>, is that use of Unicode introduces the risk of visually
 similar and identical characters that can be exploited to deceive the
@@ -1554,7 +1554,9 @@ that are encoded using their A-label representation.<a href="#section-8-2.3" cla
       <h2 id="name-iana-considerations">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">There are no IANA Considerations for this document.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">Update the document reference for the SmtpUTF8Mailbox otherName in the
+"SMI Security for PKIX Other Name Forms" (1.3.6.1.5.5.7.8) registry
+from RFC 8398 to this document.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-10">
