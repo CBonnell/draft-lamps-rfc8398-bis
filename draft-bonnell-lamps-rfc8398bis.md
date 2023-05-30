@@ -127,6 +127,7 @@ internationalized email addresses can appear in the subjectAltName of
 a certificate, the issuerAltName of a certificate, or anywhere else
 that GeneralName is used.
 
+~~~
 id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
 
 SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
@@ -136,6 +137,7 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 -- encoded as LDH-labels. In particular, domain labels
 -- are not encoded as U-labels and instead are encoded
 -- using their A-label representation.
+~~~
 
 When the subjectAltName (or issuerAltName) extension contains an
 internationalized email address with a non-ASCII local-part, the
