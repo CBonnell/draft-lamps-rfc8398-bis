@@ -288,18 +288,48 @@ addresses.  Note that an email address with ASCII-only local-part is
 encoded as rfc822Name despite also having Unicode present in the
 domain.
 
+~~~
+
+   +-------------------------------------------------------------------+
+   |  Root CA Cert                                                     |
+   +-------------------------------------------------------------------+
+                                     |
+                                     v
+   +-------------------------------------------------------------------+
+   |  Intermediate CA Cert                                             |
+   |      Permitted                                                    |
+   |        rfc822Name: elementary.school.example.com (1)              |
+   |                                                                   |
+   |        rfc822Name: xn--pss25c.example.com (2)                     |
+   |                                                                   |
+   +-------------------------------------------------------------------+
+                                     |
+                                     v
+   +-------------------------------------------------------------------+
+   |  Entity Cert (w/explicitly permitted subjects)                    |
+   |    SubjectAltName Extension                                       |
+   |      rfc822Name: student@elemenary.school.example.com (1)         |
+   |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
+   |        (1)                                                        |
+   |                                                                   |
+   |      rfc822Name: student@xn--pss25c.example.com (2)               |
+   |      SmtpUTF8Mailbox: u+533Bu+751F@u+5927u+5B66.example.com (2)   |
+   |                                                                   |
+   +-------------------------------------------------------------------+
+~~~
+
 # Security Considerations
 
 Use of SmtpUTF8Mailbox for certificate subjectAltName (and
-   issuerAltName) will incur many of the same security considerations as
-   in Section 8 in {{RFC5280}}, but it introduces a new issue by
-   permitting non-ASCII characters in the email address local-part.
-   This issue, as mentioned in Section 4.4 of {{RFC5890}} and in Section 4
-   of {{RFC6532}}, is that use of Unicode introduces the risk of visually
-   similar and identical characters that can be exploited to deceive the
-   recipient.  The former document references some means to mitigate
-   against these attacks.  See [WEBER] for more background on security
-   issues with Unicode.
+issuerAltName) will incur many of the same security considerations as
+in Section 8 in {{RFC5280}}, but it introduces a new issue by
+permitting non-ASCII characters in the email address local-part.
+This issue, as mentioned in Section 4.4 of {{RFC5890}} and in Section 4
+of {{RFC6532}}, is that use of Unicode introduces the risk of visually
+similar and identical characters that can be exploited to deceive the
+recipient.  The former document references some means to mitigate
+against these attacks.  See {{WEBER}} for more background on security
+issues with Unicode.
 
 
 # IANA Considerations
@@ -367,7 +397,7 @@ otherName in GeneralName to encode the email address
 The hexadecimal DER encoding of the block is:
 
 ~~~
-a0330608 2b060105 05070809 a0270c25 c3a5c28c c2bbc3a7 c294c29f 
+a0330608 2b060105 05070809 a0270c25 c3a5c28c c2bbc3a7 c294c29f
 40c3a5c2 a4c2a7c3 a5c2adc2 a62e6578 616d706c 652e636f 6d
 ~~~
 
