@@ -140,7 +140,7 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 ~~~
 
 When the subjectAltName (or issuerAltName) extension contains an
-internationalized email address with a non-ASCII local-part, the
+internationalized email address with a non-ASCII Local-part, the
 address MUST be stored in the SmtpUTF8Mailbox name form of otherName.
 The format of SmtpUTF8Mailbox is defined as the ABNF rule
 SmtpUTF8Mailbox.  SmtpUTF8Mailbox is a modified version of the
@@ -149,10 +149,10 @@ internationalized Mailbox that was defined in Section 3.3 of
 of {{RFC5321}}.  {{RFC6531}} defines the following ABNF rules for Mailbox
 whose parts are modified for internationalization: `Local-part`,
 `Dot-string`, `Quoted-string`, `QcontentSMTP`, `Domain`, and `Atom`.
-In particular, `Local-part` was updated to also support UTF8-non-
-ascii.  UTF8-non-ascii was described by Section 3.1 of {{!RFC6532}}.
-Also, domain was extended to support U-labels, as defined in
-{{RFC5890}}.
+In particular, `Local-part` was updated to also support
+UTF8-non-ascii.  UTF8-non-ascii was described by Section 3.1 of
+{{!RFC6532}}. Also, domain was extended to support U-labels, as defined
+in {{RFC5890}}.
 
 This document further refines internationalized Mailbox ABNF rules as
 described in {{RFC6531}} and calls this SmtpUTF8Mailbox.  In
@@ -173,7 +173,7 @@ surrounded in parentheses) after it, and is not surrounded by "<" and
 ">" characters.
 
 Due to name constraint compatibility reasons described in {{name-constraints}},
-SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the local-part
+SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the Local-part
 of the email address contains non-ASCII characters.  When the local-
 part is ASCII, rfc822Name subjectAltName MUST be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
@@ -185,13 +185,13 @@ SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
 MUST NOT contain a Byte-Order-Mark (BOM) {{!RFC3629}} to aid consistency
 across implementations, particularly for comparison.
 
-| local-part char | subjectAltName  |
+| Local-part char | subjectAltName  |
 |-----------------|-----------------|
 |    ASCII-only   |    rfc822Name   |
 |    non-ASCII    | SmtpUTF8Mailbox |
 {: #santypes title="Email Address Formatting"}
 
-Non-ASCII local-part values may additionally include ASCII characters.
+Non-ASCII Local-part values may additionally include ASCII characters.
 
 # IDNA2008
 
@@ -206,8 +206,8 @@ anywhere else that these are used.
 # Matching of Internationalized Email Addresses in X.509 Certificates
 
 Equivalence comparisons with SmtpUTF8Mailbox consist of
-a domain part step and a local-part step.  The comparison form for
-local-parts is always UTF-8.  The comparison form for domain parts
+a domain part step and a Local-part step.  The comparison form for
+Local-parts is always UTF-8.  The comparison form for domain parts
 is always performed with the LDH-label ({{RFC5890}}) encoding of the
 relevant domain labels. The comparison of LDH-labels in domain parts
 reduces complexity for implementations of the certification path
@@ -218,7 +218,7 @@ Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
 work needed.  They are considered equivalent if there is an exact
 octet-for-octet match.  Comparison with email addresses such as
 internationalized email address or rfc822Name requires additional
-setup steps for domain part and local-part.  The initial preparation
+setup steps for domain part and Local-part.  The initial preparation
 for the email addresses is to remove any phrases, comments, and "<"
 or ">" characters.  This document calls for comparison of domain
 labels that include non-ASCII characters to be transformed to
@@ -227,13 +227,13 @@ use of the U-label by using Section 5.1 of {{!RFC5891}}.  Next, if
 necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
 specified in Section 5.5 of {{RFC5891}}.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
-letters.  In setup for SmtpUTF8Mailbox, the email address local-part
+letters.  In setup for SmtpUTF8Mailbox, the email address Local-part
 MUST conform to the requirements of {{!RFC6530}} and {{RFC6531}},
 including being a string in UTF-8 form.  In particular, the local-
 part MUST NOT be transformed in any way, such as by doing case
 folding or normalization of any kind.  The `Local-part` part of an
 internationalized email address is already in UTF-8.  For rfc822Name,
-the local-part, which is IA5String (ASCII), trivially maps to UTF-8
+the Local-part, which is IA5String (ASCII), trivially maps to UTF-8
 without change.  Once setup is complete, they are again compared
 octet for octet.
 
@@ -267,13 +267,13 @@ modifies, and extends rfc822Name name constraints defined in
 {{RFC5280}} to cover SmtpUTF8Mailbox subject alternative names.  This
 ensures that the introduction of SmtpUTF8Mailbox does not violate
 existing name constraints.  Since it is not valid to include
-non-ASCII UTF-8 characters in the local-part of rfc822Name name
-constraints, and since name constraints that include a local-part are
+non-ASCII UTF-8 characters in the Local-part of rfc822Name name
+constraints, and since name constraints that include a Local-part are
 rarely, if at all, used in practice, name constraints updated in
 {{RFC8399BIS}} allow the forms that represent all addresses at a host or
 all mailboxes in a domain and deprecates rfc822Name name constraints
 that represent a particular mailbox.  That is, rfc822Name constraints
-with a local-part SHOULD NOT be used.
+with a Local-part SHOULD NOT be used.
 
 Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
 the setup steps defined by Section 5.  Setup converts the inputs of
@@ -281,7 +281,7 @@ the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
 name constraint and the subject, this will
-lowercase any domain NR-LDH labels.  Strip the local-part and "@"
+lowercase any domain NR-LDH labels.  Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of {{RFC5280}} as follows.  If the resulting name
@@ -306,7 +306,7 @@ rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  The second example (2) illustrates a permitted rfc822Name
 host name name constraint with A-label, and the corresponding valid
 rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
-addresses.  Note that an email address with ASCII-only local-part is
+addresses.  Note that an email address with ASCII-only Local-part is
 encoded as rfc822Name despite also having Unicode present in the
 domain.
 
@@ -345,7 +345,7 @@ domain.
 Use of SmtpUTF8Mailbox for certificate subjectAltName (and
 issuerAltName) will incur many of the same security considerations as
 in Section 8 in {{RFC5280}}, but it introduces a new issue by
-permitting non-ASCII characters in the email address local-part.
+permitting non-ASCII characters in the email address Local-part.
 This issue, as mentioned in Section 4.4 of {{RFC5890}} and in Section 4
 of {{RFC6532}}, is that use of Unicode introduces the risk of visually
 similar and identical characters that can be exploited to deceive the
@@ -371,7 +371,9 @@ that are encoded using their A-label representation.
 
 # IANA Considerations
 
-There are no IANA Considerations for this document.
+Update the document reference for the SmtpUTF8Mailbox otherName in the
+"SMI Security for PKIX Other Name Forms" (1.3.6.1.5.5.7.8) registry
+from RFC 8398 to this document.
 
 --- back
 
