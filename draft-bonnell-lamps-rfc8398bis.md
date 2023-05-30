@@ -172,7 +172,7 @@ phrase (such as a common name) before it, has no comment (text
 surrounded in parentheses) after it, and is not surrounded by "<" and
 ">" characters.
 
-Due to name constraint compatibility reasons described in {name-constraints},
+Due to name constraint compatibility reasons described in {{name-constraints}},
 SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the local-part
 of the email address contains non-ASCII characters.  When the local-
 part is ASCII, rfc822Name subjectAltName MUST be used instead of
