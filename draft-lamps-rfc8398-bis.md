@@ -9,17 +9,17 @@ number:
 date:
 consensus: true
 v: 3
-area: Security
+# area: Security
 # workgroup: WG Working Group
 keyword:
  - EAI
  - PKIX
  - email address
 venue:
-  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
-  type: "Working Group"
-  mail: "spasm@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
+#  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
+#  type: "Working Group"
+#  mail: "spasm@ietf.org"
+#  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
   github: "CBonnell/draft-lamps-rfc8398-bis"
   latest: "https://CBonnell.github.io/draft-lamps-rfc8398-bis/draft-lamps-rfc8398-bis.html"
 author:
