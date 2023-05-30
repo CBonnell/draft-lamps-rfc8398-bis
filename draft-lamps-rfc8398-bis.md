@@ -19,30 +19,29 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
-category: info
+title: "Internationalized Email Addresses in X.509 Certificates"
+abbrev: "I18N Mail Addresses in X.509 Certificates"
+category: std
 
-docname: draft-todo-yourname-protocol-latest
+docname: draft-lamps-rfc8398-bis
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: Security
+# workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - EAI
+ - PKIX
+ - email address
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
-
+  group: "Limited Additional Mechanisms for PKIX and SMIME (lamps)"
+  type: "Working Group"
+  mail: "spasm@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/spasm/"
+  github: "CBonnell/draft-lamps-rfc8398-bis"
+  latest: "https://CBonnell.github.io/draft-lamps-rfc8398-bis/draft-lamps-rfc8398-bis.html"
 author:
  -
     fullname: Your Name Here
@@ -56,14 +55,16 @@ informative:
 
 --- abstract
 
-TODO Abstract
+This document defines a new name form for inclusion in the otherName
+field of an X.509 Subject Alternative Name and Issuer Alternative
+Name extension that allows a certificate subject to be associated
+with an internationalized email address.
 
+This document updates RFC 5280.
 
 --- middle
 
 # Introduction
-
-TODO Introduction
 
 
 # Conventions and Definitions
