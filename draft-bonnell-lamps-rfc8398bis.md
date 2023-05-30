@@ -432,7 +432,7 @@ END
 
 This non-normative example demonstrates using SmtpUTF8Mailbox as an
 otherName in GeneralName to encode the email address
-"医生@xn--pss25c.example.com".
+"u+533Bu+751F@xn--pss25c.example.com".
 
 The hexadecimal DER encoding of the block is:
 
@@ -447,7 +447,7 @@ The text decoding is:
 0  43: [0] {
 2   8:   OBJECT IDENTIFIER '1 3 6 1 5 5 7 8 9'
 12  31:   [0] {
-14  29:     UTF8String '医生@xn--pss25c.example.com'
+14  29:     UTF8String 'u+533Bu+751F@xn--pss25c.example.com'
       :     }
       :   }
 ~~~
