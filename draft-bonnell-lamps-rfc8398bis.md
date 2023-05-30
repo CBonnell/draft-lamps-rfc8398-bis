@@ -167,7 +167,7 @@ Digits Hyphen" and is the set of LDH labels that do not have "--"
 characters in the third and forth character position, which excludes
 "tagged domain names" such as A-labels. To facilitate octet-for-octet
 comparisons of SmtpUTF8Mailbox values, all labels which constitute
-the domain part SHALL only encoded with lowercase letters. Consistent
+the domain part SHALL only be encoded with lowercase letters. Consistent
 with the treatment of rfc822Name in {{RFC5280}}, SmtpUTF8Mailbox is an
 envelope `Mailbox` and has no phrase (such as a common name) before it,
 has no comment (text surrounded in parentheses) after it, and is not
