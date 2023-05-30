@@ -187,6 +187,7 @@ across implementations, particularly for comparison.
 |-----------------|-----------------|
 |    ASCII-only   |    rfc822Name   |
 |    non-ASCII    | SmtpUTF8Mailbox |
+{: #santypes title="Email Address Formatting"}
 
 Non-ASCII local-part values may additionally include ASCII characters.
 
@@ -297,7 +298,7 @@ and with non-ASCII domains encoded in A-labels only.
 
 The name constraint requirement with SmtpUTF8Mailbox subject
 alternative name is illustrated in the non-normative diagram in
-Figure 1.  The first example (1) illustrates a permitted rfc822Name
+{{nctypes}}.  The first example (1) illustrates a permitted rfc822Name
 ASCII-only host name name constraint and the corresponding valid
 rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  The second example (2) illustrates a permitted rfc822Name
@@ -335,6 +336,7 @@ domain.
 |                                                                   |
 +-------------------------------------------------------------------+
 ~~~
+{: #nctypes title="Name Constraints with SmtpUTF8Name and rfc822Name"}
 
 # Security Considerations
 
@@ -375,7 +377,7 @@ There are no IANA Considerations for this document.
 
 The following ASN.1 module normatively specifies the SmtpUTF8Mailbox
 structure.  This specification uses the ASN.1 definitions from
-{{!RFC5912}} with the 2002 ASN.1 notation used in that document.
+{{?RFC5912}} with the 2002 ASN.1 notation used in that document.
 {{RFC5912}} updates normative documents using older ASN.1 notation.
 
 ~~~
@@ -422,7 +424,6 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 -- using their A-label representation.
 
 END
-
 ~~~
 
 # Example of SmtpUTF8Mailbox
