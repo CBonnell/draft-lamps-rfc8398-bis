@@ -81,14 +81,14 @@ This document updates RFC 5280.
 
 # Introduction
 
-{{RFC5280}} defines the rfc822Name subjectAltName name type for
-representing email addresses as described in {{RFC5321}}.  The syntax
+{{!RFC5280}} defines the rfc822Name subjectAltName name type for
+representing email addresses as described in {{!RFC5321}}.  The syntax
 of rfc822Name is restricted to a subset of US-ASCII characters and
 thus can't be used to represent internationalized email addresses
-{{RFC6531}}.  This document defines a new otherName variant to
+{{!RFC6531}}.  This document defines a new otherName variant to
 represent internationalized email addresses.  In addition this
 document requires all email address domains in X.509 certificates to
-conform to IDNA2008 {{RFC5890}}.
+conform to IDNA2008 {{!RFC5890}}.
 
 # Conventions and Definitions
 
@@ -185,7 +185,7 @@ a domain part step and a local-part step.  The comparison form for
 local-parts is always UTF-8.  The comparison form for domain parts
 depends on context.  While some contexts such as certificate path
 validation in {{RFC5280}} specify transforming domain to A-label
-(Sections 7.2 and 7.5 in {{RFC5280}} as updated by {{RFC8399}}), this
+(Sections 7.2 and 7.5 in {{RFC5280}} as updated by {{!RFC8399}}), this
 document recommends transforming to UTF-8 U-label instead.  This
 reduces the likelihood of errors by reducing conversions as more
 implementations natively support U-label domains.
@@ -199,13 +199,13 @@ for the email addresses is to remove any phrases, comments, and "<"
 or ">" characters.  This document calls for comparison of domain
 labels that include non-ASCII characters to be transformed to
 U-labels if not already in that form.  The first step is to detect
-use of the A-label by using Section 5.1 of {{RFC5891}}.  Next, if
+use of the A-label by using Section 5.1 of {{!RFC5891}}.  Next, if
 necessary, transform any A-labels (US-ASCII) to U-labels (Unicode) as
 specified in Section 5.2 of {{RFC5891}}.  Finally, if necessary,
-convert the Unicode to UTF-8 as specified in Section 3 of {{RFC3629}}.
+convert the Unicode to UTF-8 as specified in Section 3 of {{!RFC3629}}.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
 letters.  In setup for SmtpUTF8Mailbox, the email address local-part
-MUST conform to the requirements of {{RFC6530}} and {{RFC6531}},
+MUST conform to the requirements of {{!RFC6530}} and {{RFC6531}},
 including being a string in UTF-8 form.  In particular, the local-
 part MUST NOT be transformed in any way, such as by doing case
 folding or normalization of any kind.  The `Local-part` part of an
