@@ -293,32 +293,32 @@ encoded as rfc822Name despite also having Unicode present in the
 domain.
 
 ~~~
-   +-------------------------------------------------------------------+
-   |  Root CA Cert                                                     |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Intermediate CA Cert                                             |
-   |      Permitted                                                    |
-   |        rfc822Name: elementary.school.example.com (1)              |
-   |                                                                   |
-   |        rfc822Name: xn--pss25c.example.com (2)                     |
-   |                                                                   |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Entity Cert (w/explicitly permitted subjects)                    |
-   |    SubjectAltName Extension                                       |
-   |      rfc822Name: student@elemenary.school.example.com (1)         |
-   |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
-   |        (1)                                                        |
-   |                                                                   |
-   |      rfc822Name: student@xn--pss25c.example.com (2)               |
-   |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
-   |                                                                   |
-   +-------------------------------------------------------------------+
++-------------------------------------------------------------------+
+|  Root CA Cert                                                     |
++-------------------------------------------------------------------+
+                                  |
+                                  v
++-------------------------------------------------------------------+
+|  Intermediate CA Cert                                             |
+|      Permitted                                                    |
+|        rfc822Name: elementary.school.example.com (1)              |
+|                                                                   |
+|        rfc822Name: xn--pss25c.example.com (2)                     |
+|                                                                   |
++-------------------------------------------------------------------+
+                                  |
+                                  v
++-------------------------------------------------------------------+
+|  Entity Cert (w/explicitly permitted subjects)                    |
+|    SubjectAltName Extension                                       |
+|      rfc822Name: student@elemenary.school.example.com (1)         |
+|      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
+|        (1)                                                        |
+|                                                                   |
+|      rfc822Name: student@xn--pss25c.example.com (2)               |
+|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
 
 # Security Considerations
