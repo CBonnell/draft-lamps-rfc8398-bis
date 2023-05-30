@@ -162,15 +162,16 @@ restriction reduces complexity for implementations of the certification
 path validation algorithm defined in Section 6 of {{RFC5280}}.  In
 SmtpUTF8Mailbox, domain labels that solely use ASCII characters (meaning
 neither A- nor U-labels) SHALL use NR-LDH restrictions as specified by
-Section 2.3.1 of {{RFC5890}} and SHALL be restricted to lowercase
-letters.  NR-LDH stands for "Non-Reserved Letters Digits Hyphen" and
-is the set of LDH labels that do not have "--" characters in the
-third and forth character position, which excludes "tagged domain
-names" such as A-labels.  Consistent with the treatment of rfc822Name
-in {{RFC5280}}, SmtpUTF8Mailbox is an envelope `Mailbox` and has no
-phrase (such as a common name) before it, has no comment (text
-surrounded in parentheses) after it, and is not surrounded by "<" and
-">" characters.
+Section 2.3.1 of {{RFC5890}}.  NR-LDH stands for "Non-Reserved Letters
+Digits Hyphen" and is the set of LDH labels that do not have "--"
+characters in the third and forth character position, which excludes
+"tagged domain names" such as A-labels. To facilitate octet-for-octet
+comparisons of SmtpUTF8Mailbox values, all labels which constitute
+the domain part SHALL only encoded with lowercase letters. Consistent
+with the treatment of rfc822Name in {{RFC5280}}, SmtpUTF8Mailbox is an
+envelope `Mailbox` and has no phrase (such as a common name) before it,
+has no comment (text surrounded in parentheses) after it, and is not
+surrounded by "<" and ">" characters.
 
 Due to name constraint compatibility reasons described in {{name-constraints}},
 SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the Local-part
@@ -216,33 +217,46 @@ the need to convert domain labels to their Unicode representation.
 
 Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
 work needed.  They are considered equivalent if there is an exact
-octet-for-octet match.  Comparison with email addresses such as
-internationalized email address or rfc822Name requires additional
-setup steps for domain part and Local-part.  The initial preparation
-for the email addresses is to remove any phrases, comments, and "<"
-or ">" characters.  This document calls for comparison of domain
-labels that include non-ASCII characters to be transformed to
-A-labels if not already in that form.  The first step is to detect
-use of the U-label by using Section 5.1 of {{!RFC5891}}.  Next, if
-necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
-specified in Section 5.5 of {{RFC5891}}.
-For ASCII NR-LDH labels, uppercase letters are converted to lowercase
-letters.  In setup for SmtpUTF8Mailbox, the email address Local-part
-MUST conform to the requirements of {{!RFC6530}} and {{RFC6531}},
-including being a string in UTF-8 form.  In particular, the local-
+octet-for-octet match.
+
+Comparison of a SmtpUTF8Mailbox and rfc822Name will always fail.
+SmtpUTF8Mailbox values SHALL contain a Local-part which includes
+one or more non-ASCII characters, while rfc822Names only
+include ASCII characters (including the Local-part). Thus, a
+SmtpUTF8Mailbox and rfc822Name will never match.
+
+Comparison of SmtpUTF8Mailbox values with internationalized email
+addresses requires additional setup steps for domain part and
+Local-part. The initial preparation for the email address to compare
+with the SmtpUTF8Mailbox value is to remove any phrases, comments, and
+"<" or ">" characters.
+
+For the setup of the domain part, the following conversions SHALL be
+performed:
+
+1. Convert all labels which constitute the domain part that include
+   non-ASCII characters to A-labels if not already in that form.
+    a. Detect all U-labels present within the domain part using
+       Section 5.1 of {{!RFC5891}}.
+    b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
+       specified in Section 5.5 of {{RFC5891}}.
+2. Convert all uppercase letters found within the labels which
+   constitute the domain part to lowercase letters.
+
+For the setup of the Local-part, the Local-part MUST be verified to
+conform to the requirements of {{!RFC6530}} and {{RFC6531}}, including
+being a string in UTF-8 form.  In particular, the local-
 part MUST NOT be transformed in any way, such as by doing case
 folding or normalization of any kind.  The `Local-part` part of an
-internationalized email address is already in UTF-8.  For rfc822Name,
-the Local-part, which is IA5String (ASCII), trivially maps to UTF-8
-without change.  Once setup is complete, they are again compared
-octet for octet.
+internationalized email address is already in UTF-8. Once setup is
+complete, they are again compared octet-for-octet.
 
 To summarize non-normatively, the comparison steps, including setup,
 are:
 
 1.  If the domain contains U-labels, transform them to A-labels.
-2.  If the domain contains ASCII NR-LDH labels, lowercase them.
-3.  Compare strings octet for octet for equivalence.
+2.  If the domain contains any uppercase letters, lowercase them.
+3.  Compare strings octet-for-octet for equivalence.
 
 This specification expressly does not define any wildcard characters,
 and SmtpUTF8Mailbox comparison implementations MUST NOT interpret any
@@ -288,10 +302,10 @@ in Section 4.2.1.10 of {{RFC5280}} as follows.  If the resulting name
 constraint domain starts with a "." character, then for the name
 constraint to match, a suffix of the resulting subject alternative
 name domain MUST match the name constraint (including the leading
-".") octet for octet.  If the resulting name constraint domain does
+".") octet-for-octet.  If the resulting name constraint domain does
 not start with a "." character, then for the name constraint to
 match, the entire resulting subject alternative name domain MUST
-match the name constraint octet for octet.
+match the name constraint octet-for-octet.
 
 Certificate Authorities that wish to issue CA certificates with email
 address name constraints MUST use rfc822Name subject alternative
@@ -334,7 +348,7 @@ domain.
 |        (1)                                                        |
 |                                                                   |
 |      rfc822Name: student@xn--pss25c.example.com (2)               |
-|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
+|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)     |
 |                                                                   |
 +-------------------------------------------------------------------+
 ~~~
