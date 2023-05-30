@@ -48,21 +48,37 @@ author:
   -
     fullname: Alexey Melnikov
     organization: Isode Ltd
+    street: 14 Castle Mews
+    city: Hampton
+    region: Middlesex
+    code: TW12 2NP
+    country: United Kingdom
     email: Alexey.Melnikov@isode.com
   -
     fullname: Wei Chuang
     organization: Google, Inc.
+    street: 1600 Amphitheater Parkway
+    city: Mountain View
+    region: CA
+    country: United States of America
     email: weihaw@google.com
   -
     fullname: Corey Bonnell
     organization: DigiCert
+    city: Pittsburgh
+    region: PA
+    country: United States of America
     email: corey.bonnell@digicert.com
 
 normative:
   RFC8399BIS:
     author:
       - ins: R. Housley
-        name: R. Housley
+        fullname: Russ Housley
+        org: Vigil Security, LLC
+        city: Herndon
+        region: VA
+        country: United States of America
     target: https://datatracker.ietf.org/doc/draft-housley-lamps-rfc8399bis/
     title: Internationalization Updates to RFC 5280
 
