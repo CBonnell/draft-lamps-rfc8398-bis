@@ -1314,8 +1314,12 @@ below.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">SmtpUTF8Mailbox is encoded as UTF8String.  The UTF8String encoding
 <span class="bcp14">MUST NOT</span> contain a Byte-Order-Mark (BOM) <span>[<a href="#RFC3629" class="cite xref">RFC3629</a>]</span> to aid consistency
 across implementations, particularly for comparison.<a href="#section-3-7" class="pilcrow">¶</a></p>
+<span id="name-email-address-formatting"></span><div id="santypes">
 <table class="center" id="table-1">
-        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-email-address-formatting" class="selfRef">Email Address Formatting</a>
+        </caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">local-part char</th>
@@ -1333,6 +1337,7 @@ across implementations, particularly for comparison.<a href="#section-3-7" class
           </tr>
         </tbody>
       </table>
+</div>
 <p id="section-3-9">Non-ASCII local-part values may additionally include ASCII characters.<a href="#section-3-9" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1451,7 +1456,7 @@ names only.  These <span class="bcp14">MUST</span> be IDNA2008-conformant names 
 and with non-ASCII domains encoded in A-labels only.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <p id="section-6-5">The name constraint requirement with SmtpUTF8Mailbox subject
 alternative name is illustrated in the non-normative diagram in
-Figure 1.  The first example (1) illustrates a permitted rfc822Name
+<a href="#nctypes" class="auto internal xref">Figure 1</a>.  The first example (1) illustrates a permitted rfc822Name
 ASCII-only host name name constraint and the corresponding valid
 rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  The second example (2) illustrates a permitted rfc822Name
@@ -1460,7 +1465,9 @@ rfc822Name subjectAltName and SmtpUTF8Mailbox subjectAltName email
 addresses.  Note that an email address with ASCII-only local-part is
 encoded as rfc822Name despite also having Unicode present in the
 domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6-6">
+<span id="name-name-constraints-with-smtpu"></span><div id="nctypes">
+<figure id="figure-1">
+        <div class="alignLeft art-text artwork" id="section-6-6.1">
 <pre>
 +-------------------------------------------------------------------+
 |  Root CA Cert                                                     |
@@ -1488,7 +1495,11 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
 |                                                                   |
 +-------------------------------------------------------------------+
-</pre><a href="#section-6-6" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-name-constraints-with-smtpu" class="selfRef">Name Constraints with SmtpUTF8Name and rfc822Name</a>
+        </figcaption></figure>
 </div>
 </section>
 </div>
@@ -1574,10 +1585,6 @@ that are encoded using their A-label representation.<a href="#section-8-2.3" cla
         <dd>
 <span class="refAuthor">Klensin, J.</span>, <span class="refTitle">"Internationalized Domain Names in Applications (IDNA): Protocol"</span>, <span class="seriesInfo">RFC 5891</span>, <span class="seriesInfo">DOI 10.17487/RFC5891</span>, <time datetime="2010-08" class="refDate">August 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5891">https://www.rfc-editor.org/rfc/rfc5891</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC5912">[RFC5912]</dt>
-        <dd>
-<span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">J. Schaad</span>, <span class="refTitle">"New ASN.1 Modules for the Public Key Infrastructure Using X.509 (PKIX)"</span>, <span class="seriesInfo">RFC 5912</span>, <span class="seriesInfo">DOI 10.17487/RFC5912</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5912">https://www.rfc-editor.org/rfc/rfc5912</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC6530">[RFC6530]</dt>
         <dd>
 <span class="refAuthor">Klensin, J.</span> and <span class="refAuthor">Y. Ko</span>, <span class="refTitle">"Overview and Framework for Internationalized Email"</span>, <span class="seriesInfo">RFC 6530</span>, <span class="seriesInfo">DOI 10.17487/RFC6530</span>, <time datetime="2012-02" class="refDate">February 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6530">https://www.rfc-editor.org/rfc/rfc6530</a>&gt;</span>. </dd>
@@ -1609,6 +1616,10 @@ that are encoded using their A-label representation.<a href="#section-8-2.3" cla
 <a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="RFC5912">[RFC5912]</dt>
+        <dd>
+<span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">J. Schaad</span>, <span class="refTitle">"New ASN.1 Modules for the Public Key Infrastructure Using X.509 (PKIX)"</span>, <span class="seriesInfo">RFC 5912</span>, <span class="seriesInfo">DOI 10.17487/RFC5912</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5912">https://www.rfc-editor.org/rfc/rfc5912</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="WEBER">[WEBER]</dt>
       <dd>
 <span class="refAuthor">Weber, C.</span>, <span class="refTitle">"Attacking Software Globalization"</span>, <time datetime="2010-03" class="refDate">March 2010</time>, <span>&lt;<a href="https://www.lookout.net/files/Chris_Weber_Character%20Transformations%20v1.7_IUC33.pdf">https://www.lookout.net/files/Chris_Weber_Character%20Transformations%20v1.7_IUC33.pdf</a>&gt;</span>. </dd>
@@ -1670,7 +1681,6 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 -- using their A-label representation.
 
 END
-
 </pre><a href="#appendix-A-2" class="pilcrow">¶</a>
 </div>
 </section>

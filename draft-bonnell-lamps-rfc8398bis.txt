@@ -183,7 +183,7 @@ Table of Contents
                    | non-ASCII       | SmtpUTF8Mailbox |
                    +-----------------+-----------------+
 
-                                  Table 1
+                     Table 1: Email Address Formatting
 
    Non-ASCII local-part values may additionally include ASCII
    characters.
@@ -333,6 +333,8 @@ Table of Contents
    |                                                                   |
    +-------------------------------------------------------------------+
 
+        Figure 1: Name Constraints with SmtpUTF8Name and rfc822Name
+
 7.  Security Considerations
 
    Use of SmtpUTF8Mailbox for certificate subjectAltName (and
@@ -401,11 +403,6 @@ Table of Contents
               DOI 10.17487/RFC5891, August 2010,
               <https://www.rfc-editor.org/rfc/rfc5891>.
 
-   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
-              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
-              DOI 10.17487/RFC5912, June 2010,
-              <https://www.rfc-editor.org/rfc/rfc5912>.
-
    [RFC6530]  Klensin, J. and Y. Ko, "Overview and Framework for
               Internationalized Email", RFC 6530, DOI 10.17487/RFC6530,
               February 2012, <https://www.rfc-editor.org/rfc/rfc6530>.
@@ -433,6 +430,11 @@ Table of Contents
               lamps-rfc8399bis/>.
 
 10.2.  Informative References
+
+   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
+              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
+              DOI 10.17487/RFC5912, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5912>.
 
    [WEBER]    Weber, C., "Attacking Software Globalization", March 2010,
               <https://www.lookout.net/files/
