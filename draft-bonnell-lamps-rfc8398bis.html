@@ -1374,8 +1374,7 @@ labels that include non-ASCII characters to be transformed to
 A-labels if not already in that form.  The first step is to detect
 use of the U-label by using Section 5.1 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.  Next, if
 necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
-specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.  Finally, if necessary,
-convert the Unicode to UTF-8 as specified in Section 3 of <span>[<a href="#RFC3629" class="cite xref">RFC3629</a>]</span>.
+specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.
 For ASCII NR-LDH labels, uppercase letters are converted to lowercase
 letters.  In setup for SmtpUTF8Mailbox, the email address local-part
 <span class="bcp14">MUST</span> conform to the requirements of <span>[<a href="#RFC6530" class="cite xref">RFC6530</a>]</span> and <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span>,
@@ -1463,32 +1462,32 @@ encoded as rfc822Name despite also having Unicode present in the
 domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6-6">
 <pre>
-   +-------------------------------------------------------------------+
-   |  Root CA Cert                                                     |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Intermediate CA Cert                                             |
-   |      Permitted                                                    |
-   |        rfc822Name: elementary.school.example.com (1)              |
-   |                                                                   |
-   |        rfc822Name: xn--pss25c.example.com (2)                     |
-   |                                                                   |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Entity Cert (w/explicitly permitted subjects)                    |
-   |    SubjectAltName Extension                                       |
-   |      rfc822Name: student@elemenary.school.example.com (1)         |
-   |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
-   |        (1)                                                        |
-   |                                                                   |
-   |      rfc822Name: student@xn--pss25c.example.com (2)               |
-   |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
-   |                                                                   |
-   +-------------------------------------------------------------------+
++-------------------------------------------------------------------+
+|  Root CA Cert                                                     |
++-------------------------------------------------------------------+
+                                  |
+                                  v
++-------------------------------------------------------------------+
+|  Intermediate CA Cert                                             |
+|      Permitted                                                    |
+|        rfc822Name: elementary.school.example.com (1)              |
+|                                                                   |
+|        rfc822Name: xn--pss25c.example.com (2)                     |
+|                                                                   |
++-------------------------------------------------------------------+
+                                  |
+                                  v
++-------------------------------------------------------------------+
+|  Entity Cert (w/explicitly permitted subjects)                    |
+|    SubjectAltName Extension                                       |
+|      rfc822Name: student@elemenary.school.example.com (1)         |
+|      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
+|        (1)                                                        |
+|                                                                   |
+|      rfc822Name: student@xn--pss25c.example.com (2)               |
+|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
+|                                                                   |
++-------------------------------------------------------------------+
 </pre><a href="#section-6-6" class="pilcrow">¶</a>
 </div>
 </section>

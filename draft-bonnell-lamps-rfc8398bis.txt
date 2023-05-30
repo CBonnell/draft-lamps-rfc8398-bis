@@ -220,18 +220,16 @@ Table of Contents
    A-labels if not already in that form.  The first step is to detect
    use of the U-label by using Section 5.1 of [RFC5891].  Next, if
    necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
-   specified in Section 5.5 of [RFC5891].  Finally, if necessary,
-   convert the Unicode to UTF-8 as specified in Section 3 of [RFC3629].
-   For ASCII NR-LDH labels, uppercase letters are converted to lowercase
-   letters.  In setup for SmtpUTF8Mailbox, the email address local-part
-   MUST conform to the requirements of [RFC6530] and [RFC6531],
-   including being a string in UTF-8 form.  In particular, the local-
-   part MUST NOT be transformed in any way, such as by doing case
-   folding or normalization of any kind.  The Local-part part of an
-   internationalized email address is already in UTF-8.  For rfc822Name,
-   the local-part, which is IA5String (ASCII), trivially maps to UTF-8
-   without change.  Once setup is complete, they are again compared
-   octet for octet.
+   specified in Section 5.5 of [RFC5891].  For ASCII NR-LDH labels,
+   uppercase letters are converted to lowercase letters.  In setup for
+   SmtpUTF8Mailbox, the email address local-part MUST conform to the
+   requirements of [RFC6530] and [RFC6531], including being a string in
+   UTF-8 form.  In particular, the local- part MUST NOT be transformed
+   in any way, such as by doing case folding or normalization of any
+   kind.  The Local-part part of an internationalized email address is
+   already in UTF-8.  For rfc822Name, the local-part, which is IA5String
+   (ASCII), trivially maps to UTF-8 without change.  Once setup is
+   complete, they are again compared octet for octet.
 
    To summarize non-normatively, the comparison steps, including setup,
    are:
