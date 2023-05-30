@@ -75,7 +75,7 @@ field of an X.509 Subject Alternative Name and Issuer Alternative
 Name extension that allows a certificate subject to be associated
 with an internationalized email address.
 
-This document updates RFC 5280.
+This document updates RFC 5280 and obsoletes RFC 8398.
 
 --- middle
 
@@ -304,9 +304,87 @@ Use of SmtpUTF8Mailbox for certificate subjectAltName (and
 
 # IANA Considerations
 
-
+There are no IANA Considerations for this document.
 
 --- back
+
+# ASN.1 Module
+
+The following ASN.1 module normatively specifies the SmtpUTF8Mailbox
+structure.  This specification uses the ASN.1 definitions from
+{{!RFC5912}} with the 2002 ASN.1 notation used in that document.
+{{RFC5912}} updates normative documents using older ASN.1 notation.
+
+~~~
+LAMPS-EaiAddresses-2016
+{ iso(1) identified-organization(3) dod(6)
+  internet(1) security(5) mechanisms(5) pkix(7) id-mod(0)
+  id-mod-lamps-eai-addresses-2016(92) }
+
+DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+
+IMPORTS
+OTHER-NAME
+FROM PKIX1Implicit-2009
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+  mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-implicit-02(59) }
+
+id-pkix
+FROM PKIX1Explicit-2009
+  { iso(1) identified-organization(3) dod(6) internet(1) security(5)
+  mechanisms(5) pkix(7) id-mod(0) id-mod-pkix1-explicit-02(51) } ;
+
+--
+-- otherName carries additional name types for subjectAltName,
+-- issuerAltName, and other uses of GeneralNames.
+--
+
+id-on OBJECT IDENTIFIER ::= { id-pkix 8 }
+
+SmtpUtf8OtherNames OTHER-NAME ::= { on-SmtpUTF8Mailbox, ... }
+
+on-SmtpUTF8Mailbox OTHER-NAME ::= {
+    SmtpUTF8Mailbox IDENTIFIED BY id-on-SmtpUTF8Mailbox
+}
+
+id-on-SmtpUTF8Mailbox OBJECT IDENTIFIER ::= { id-on 9 }
+
+SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
+  -- SmtpUTF8Mailbox conforms to Mailbox as specified
+  -- in Section 3.3 of RFC 6531.
+
+END
+
+~~~
+
+# Example of SmtpUTF8Mailbox
+
+This non-normative example demonstrates using SmtpUTF8Mailbox as an
+otherName in GeneralName to encode the email address
+"u+533Bu+751F@u+5927u+5B66.example.com".
+
+The hexadecimal DER encoding of the block is:
+
+~~~
+a0330608 2b060105 05070809 a0270c25 c3a5c28c c2bbc3a7 c294c29f 
+40c3a5c2 a4c2a7c3 a5c2adc2 a62e6578 616d706c 652e636f 6d
+~~~
+
+The text decoding is:
+
+~~~
+  2  51: [0] {
+  4   8:   OBJECT IDENTIFIER '1 3 6 1 5 5 7 8 9'
+14  39:   [0] {
+16  37:     UTF8String '..@...example.com'
+      :     }
+      :   }
+~~~
+
+The example was encoded on the OSS Nokalva ASN.1 Playground and the
+above text decoding is an output of Peter Gutmann's "dumpasn1"
+program.
 
 # Acknowledgments
 {:numbered="false"}
