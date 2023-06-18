@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-15T01:35:23.021386+00:00",
+  "timestamp": "2023-06-18T01:08:27.079612+00:00",
   "repo": "CBonnell/draft-lamps-rfc8398-bis",
   "labels": [
     {
@@ -63,7 +63,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-05-30T21:40:20Z",
-      "updatedAt": "2023-05-30T21:40:20Z",
+      "updatedAt": "2023-06-16T12:53:28Z",
       "baseRepository": "CBonnell/draft-lamps-rfc8398-bis",
       "baseRefName": "main",
       "baseRefOid": "e0fa9660adb0b481330147ff8605040300d9f2b6",
@@ -75,7 +75,68 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJpSQnc5Ya3_1",
+          "commit": {
+            "abbreviatedOid": "d4b2fed"
+          },
+          "author": "aamelnikov",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-16T12:50:28Z",
+          "updatedAt": "2023-06-16T12:50:29Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Do you mean \"ASCII lowercase letters\" or \"Unicode lowercase letter\"?",
+              "createdAt": "2023-06-16T12:50:28Z",
+              "updatedAt": "2023-06-16T12:50:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJpSQnc5Ya49w",
+          "commit": {
+            "abbreviatedOid": "d4b2fed"
+          },
+          "author": "aamelnikov",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-16T12:52:38Z",
+          "updatedAt": "2023-06-16T12:52:38Z",
+          "comments": [
+            {
+              "originalPosition": 67,
+              "body": "I think you should insert \"ASCII\" before \"uppercase\" for clarity,",
+              "createdAt": "2023-06-16T12:52:38Z",
+              "updatedAt": "2023-06-16T12:52:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJpSQnc5Ya5s0",
+          "commit": {
+            "abbreviatedOid": "d4b2fed"
+          },
+          "author": "aamelnikov",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-16T12:53:27Z",
+          "updatedAt": "2023-06-16T12:53:28Z",
+          "comments": [
+            {
+              "originalPosition": 88,
+              "body": "... any ASCII uppercase letters, ...",
+              "createdAt": "2023-06-16T12:53:27Z",
+              "updatedAt": "2023-06-16T12:53:28Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
