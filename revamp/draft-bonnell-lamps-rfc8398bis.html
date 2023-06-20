@@ -15,23 +15,23 @@ Name extension that allows a certificate subject to be associated
 with an internationalized email address. 
        This document updates RFC 5280 and obsoletes RFC 8398. 
     " name="description">
-<meta content="xml2rfc 3.17.1" name="generator">
+<meta content="xml2rfc 3.17.3" name="generator">
 <meta content="EAI" name="keyword">
 <meta content="PKIX" name="keyword">
 <meta content="email address" name="keyword">
 <meta content="draft-bonnell-lamps-rfc8398bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.1
-    Python 3.11.3
+  xml2rfc 3.17.3
+    Python 3.11.4
     appdirs 1.4.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.2
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
     pycountry 22.3.5
     PyYAML 6.0
-    requests 2.30.0
+    requests 2.31.0
     setuptools 67.7.2
     six 1.16.0
     wcwidth 0.2.6
@@ -616,6 +616,7 @@ sub, sup {
   clear: left;
   float: left;
   text-align: right;
+  margin-right: 1ch;
 }
 #identifiers dd {
   margin: 0;
@@ -1054,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">I18N Mail Addresses in X.509 Certificate</td>
-<td class="right">May 2023</td>
+<td class="right">June 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Melnikov, et al.</td>
-<td class="center">Expires 1 December 2023</td>
+<td class="center">Expires 22 December 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc5820" class="eref">5820</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-05-30" class="published">30 May 2023</time>
+<time datetime="2023-06-20" class="published">20 June 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-01">1 December 2023</time></dd>
+<dd class="expires"><time datetime="2023-12-22">22 December 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1144,7 +1145,7 @@ with an internationalized email address.<a href="#section-abstract-1" class="pil
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1303,15 +1304,15 @@ Section 2.3.1 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>
 Digits Hyphen" and is the set of LDH labels that do not have "--"
 characters in the third and forth character position, which excludes
 "tagged domain names" such as A-labels. To facilitate octet-for-octet
-comparisons of SmtpUTF8Mailbox values, all labels which constitute
-the domain part <span class="bcp14">SHALL</span> only be encoded with lowercase letters. Consistent
-with the treatment of rfc822Name in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, SmtpUTF8Mailbox is an
-envelope <code>Mailbox</code> and has no phrase (such as a common name) before it,
-has no comment (text surrounded in parentheses) after it, and is not
-surrounded by "&lt;" and "&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
+comparisons of SmtpUTF8Mailbox values, all NR-LDH and A-label labels
+which constitute the domain part <span class="bcp14">SHALL</span> only be encoded with lowercase
+letters. Consistent with the treatment of rfc822Name in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>,
+SmtpUTF8Mailbox is an envelope <code>Mailbox</code> and has no phrase (such as a
+common name) before it, has no comment (text surrounded in parentheses)
+after it, and is not surrounded by "&lt;" and "&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Due to name constraint compatibility reasons described in <a href="#name-constraints" class="auto internal xref">Section 6</a>,
 SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the Local-part
-of the email address contains non-ASCII characters.  When the local-
+of the email address contains non-ASCII characters.  When the Local-
 part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
@@ -1397,13 +1398,13 @@ non-ASCII characters to A-labels if not already in that form.
  b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
     specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.<a href="#section-5-6.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-5-6.2">Convert all uppercase letters found within the labels which
-constitute the domain part to lowercase letters.<a href="#section-5-6.2" class="pilcrow">¶</a>
+        <li id="section-5-6.2">Convert all uppercase letters found within the NR-LDH and A-label
+labels which constitute the domain part to lowercase letters.<a href="#section-5-6.2" class="pilcrow">¶</a>
 </li>
       </ol>
 <p id="section-5-7">For the setup of the Local-part, the Local-part <span class="bcp14">MUST</span> be verified to
 conform to the requirements of <span>[<a href="#RFC6530" class="cite xref">RFC6530</a>]</span> and <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span>, including
-being a string in UTF-8 form.  In particular, the local-
+being a string in UTF-8 form.  In particular, the Local-
 part <span class="bcp14">MUST NOT</span> be transformed in any way, such as by doing case
 folding or normalization of any kind.  The <code>Local-part</code> part of an
 internationalized email address is already in UTF-8. Once setup is
@@ -1413,7 +1414,8 @@ are:<a href="#section-5-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5-9">
 <li id="section-5-9.1">If the domain contains U-labels, transform them to A-labels.<a href="#section-5-9.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-5-9.2">If the domain contains any uppercase letters, lowercase them.<a href="#section-5-9.2" class="pilcrow">¶</a>
+        <li id="section-5-9.2">If any NR-LDH or A-label domain label in the domain part
+contains uppercase letters, lowercase them.<a href="#section-5-9.2" class="pilcrow">¶</a>
 </li>
         <li id="section-5-9.3">Compare strings octet-for-octet for equivalence.<a href="#section-5-9.3" class="pilcrow">¶</a>
 </li>
@@ -1457,7 +1459,7 @@ the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
 name constraint and the subject, this will
-lowercase any domain NR-LDH labels.  Strip the Local-part and "@"
+ any domain NR-LDH labels.  Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> as follows.  If the resulting name
