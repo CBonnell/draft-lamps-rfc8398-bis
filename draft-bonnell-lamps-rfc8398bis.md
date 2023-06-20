@@ -166,16 +166,16 @@ Section 2.3.1 of {{RFC5890}}.  NR-LDH stands for "Non-Reserved Letters
 Digits Hyphen" and is the set of LDH labels that do not have "--"
 characters in the third and forth character position, which excludes
 "tagged domain names" such as A-labels. To facilitate octet-for-octet
-comparisons of SmtpUTF8Mailbox values, all labels which constitute
-the domain part SHALL only be encoded with lowercase letters. Consistent
-with the treatment of rfc822Name in {{RFC5280}}, SmtpUTF8Mailbox is an
-envelope `Mailbox` and has no phrase (such as a common name) before it,
-has no comment (text surrounded in parentheses) after it, and is not
-surrounded by "<" and ">" characters.
+comparisons of SmtpUTF8Mailbox values, all NR-LDH and A-label labels
+which constitute the domain part SHALL only be encoded with lowercase
+letters. Consistent with the treatment of rfc822Name in {{RFC5280}},
+SmtpUTF8Mailbox is an envelope `Mailbox` and has no phrase (such as a
+common name) before it, has no comment (text surrounded in parentheses)
+after it, and is not surrounded by "<" and ">" characters.
 
 Due to name constraint compatibility reasons described in {{name-constraints}},
 SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the Local-part
-of the email address contains non-ASCII characters.  When the local-
+of the email address contains non-ASCII characters.  When the Local-
 part is ASCII, rfc822Name subjectAltName MUST be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
@@ -240,12 +240,12 @@ performed:
        Section 5.1 of {{!RFC5891}}.
     b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
        specified in Section 5.5 of {{RFC5891}}.
-2. Convert all uppercase letters found within the labels which
-   constitute the domain part to lowercase letters.
+2. Convert all uppercase letters found within the NR-LDH and A-label
+   labels which constitute the domain part to lowercase letters.
 
 For the setup of the Local-part, the Local-part MUST be verified to
 conform to the requirements of {{!RFC6530}} and {{RFC6531}}, including
-being a string in UTF-8 form.  In particular, the local-
+being a string in UTF-8 form.  In particular, the Local-
 part MUST NOT be transformed in any way, such as by doing case
 folding or normalization of any kind.  The `Local-part` part of an
 internationalized email address is already in UTF-8. Once setup is
@@ -255,7 +255,8 @@ To summarize non-normatively, the comparison steps, including setup,
 are:
 
 1.  If the domain contains U-labels, transform them to A-labels.
-2.  If the domain contains any uppercase letters, lowercase them.
+2.  If any NR-LDH or A-label domain label in the domain part
+    contains uppercase letters, lowercase them.
 3.  Compare strings octet-for-octet for equivalence.
 
 This specification expressly does not define any wildcard characters,
@@ -295,7 +296,7 @@ the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
 name constraint and the subject, this will
-lowercase any domain NR-LDH labels.  Strip the Local-part and "@"
+ any domain NR-LDH labels.  Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of {{RFC5280}} as follows.  If the resulting name
