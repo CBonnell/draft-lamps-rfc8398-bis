@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-20T00:59:20.927011+00:00",
+  "timestamp": "2023-06-22T01:02:03.550463+00:00",
   "repo": "CBonnell/draft-lamps-rfc8398-bis",
   "labels": [
     {
@@ -63,13 +63,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-05-30T21:40:20Z",
-      "updatedAt": "2023-06-16T12:53:28Z",
+      "updatedAt": "2023-06-20T18:43:55Z",
       "baseRepository": "CBonnell/draft-lamps-rfc8398-bis",
       "baseRefName": "main",
       "baseRefOid": "e0fa9660adb0b481330147ff8605040300d9f2b6",
       "headRepository": "CBonnell/draft-lamps-rfc8398-bis",
       "headRefName": "revamp",
-      "headRefOid": "d4b2fedb57eef5e29378935b12915bce3bfdc5fb",
+      "headRefOid": "9b909f80e4f780e7fccb330ce1f61423fcba324b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
