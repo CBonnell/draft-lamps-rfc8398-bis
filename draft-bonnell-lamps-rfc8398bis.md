@@ -204,7 +204,7 @@ conversion errors between alternate forms.  This applies to
 SmtpUTF8Mailbox and rfc822Name in subjectAltName, issuerAltName, and
 anywhere else that these are used.
 
-# Matching of Internationalized Email Addresses in X.509 Certificates
+# Matching of Internationalized Email Addresses in X.509 Certificates {#name-matching}
 
 Equivalence comparisons with SmtpUTF8Mailbox consist of
 a domain part step and a Local-part step.  The comparison form for
@@ -226,7 +226,8 @@ include ASCII characters (including the Local-part). Thus, a
 SmtpUTF8Mailbox and rfc822Name will never match.
 
 Comparison of SmtpUTF8Mailbox values with internationalized email
-addresses requires additional setup steps for domain part and
+addresses from other sources (such as received email messages, user
+input, etc.) requires additional setup steps for domain part and
 Local-part. The initial preparation for the email address to compare
 with the SmtpUTF8Mailbox value is to remove any phrases, comments, and
 "<" or ">" characters.
@@ -291,12 +292,12 @@ that represent a particular mailbox.  That is, rfc822Name constraints
 with a Local-part SHOULD NOT be used.
 
 Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
-the setup steps defined by Section 5.  Setup converts the inputs of
+the setup steps defined by {{name-matching}}.  Setup converts the inputs of
 the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
-name constraint and the subject, this will
- any domain NR-LDH labels.  Strip the Local-part and "@"
+name constraint and the subject, this will convert all A-labels and
+NR-LDH labels to lowercase. Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of {{RFC5280}} as follows.  If the resulting name
