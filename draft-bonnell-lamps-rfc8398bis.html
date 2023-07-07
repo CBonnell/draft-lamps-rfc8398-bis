@@ -15,23 +15,23 @@ Name extension that allows a certificate subject to be associated
 with an internationalized email address. 
        This document updates RFC 5280 and obsoletes RFC 8398. 
     " name="description">
-<meta content="xml2rfc 3.17.1" name="generator">
+<meta content="xml2rfc 3.17.4" name="generator">
 <meta content="EAI" name="keyword">
 <meta content="PKIX" name="keyword">
 <meta content="email address" name="keyword">
 <meta content="draft-bonnell-lamps-rfc8398bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.1
-    Python 3.11.3
-    appdirs 1.4.4
+  xml2rfc 3.17.4
+    Python 3.11.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.2
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
+    platformdirs 3.8.0
     pycountry 22.3.5
     PyYAML 6.0
-    requests 2.30.0
+    requests 2.31.0
     setuptools 67.7.2
     six 1.16.0
     wcwidth 0.2.6
@@ -616,6 +616,7 @@ sub, sup {
   clear: left;
   float: left;
   text-align: right;
+  margin-right: 1ch;
 }
 #identifiers dd {
   margin: 0;
@@ -1054,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">I18N Mail Addresses in X.509 Certificate</td>
-<td class="right">May 2023</td>
+<td class="right">July 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Melnikov, et al.</td>
-<td class="center">Expires 1 December 2023</td>
+<td class="center">Expires 8 January 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc5820" class="eref">5820</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-05-30" class="published">30 May 2023</time>
+<time datetime="2023-07-07" class="published">7 July 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-01">1 December 2023</time></dd>
+<dd class="expires"><time datetime="2024-01-08">8 January 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1144,7 +1145,7 @@ with an internationalized email address.<a href="#section-abstract-1" class="pil
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1299,18 +1300,19 @@ restriction reduces complexity for implementations of the certification
 path validation algorithm defined in Section 6 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>.  In
 SmtpUTF8Mailbox, domain labels that solely use ASCII characters (meaning
 neither A- nor U-labels) <span class="bcp14">SHALL</span> use NR-LDH restrictions as specified by
-Section 2.3.1 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span> and <span class="bcp14">SHALL</span> be restricted to lowercase
-letters.  NR-LDH stands for "Non-Reserved Letters Digits Hyphen" and
-is the set of LDH labels that do not have "--" characters in the
-third and forth character position, which excludes "tagged domain
-names" such as A-labels.  Consistent with the treatment of rfc822Name
-in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, SmtpUTF8Mailbox is an envelope <code>Mailbox</code> and has no
-phrase (such as a common name) before it, has no comment (text
-surrounded in parentheses) after it, and is not surrounded by "&lt;" and
-"&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
+Section 2.3.1 of <span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>.  NR-LDH stands for "Non-Reserved Letters
+Digits Hyphen" and is the set of LDH labels that do not have "--"
+characters in the third and forth character position, which excludes
+"tagged domain names" such as A-labels. To facilitate octet-for-octet
+comparisons of SmtpUTF8Mailbox values, all NR-LDH and A-label labels
+which constitute the domain part <span class="bcp14">SHALL</span> only be encoded with lowercase
+letters. Consistent with the treatment of rfc822Name in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>,
+SmtpUTF8Mailbox is an envelope <code>Mailbox</code> and has no phrase (such as a
+common name) before it, has no comment (text surrounded in parentheses)
+after it, and is not surrounded by "&lt;" and "&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Due to name constraint compatibility reasons described in <a href="#name-constraints" class="auto internal xref">Section 6</a>,
 SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the Local-part
-of the email address contains non-ASCII characters.  When the local-
+of the email address contains non-ASCII characters.  When the Local-
 part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
@@ -1360,7 +1362,7 @@ SmtpUTF8Mailbox and rfc822Name in subjectAltName, issuerAltName, and
 anywhere else that these are used.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="matching-of-internationalized-email-addresses-in-x509-certificates">
+<div id="name-matching">
 <section id="section-5">
       <h2 id="name-matching-of-internationaliz">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-matching-of-internationaliz" class="section-name selfRef">Matching of Internationalized Email Addresses in X.509 Certificates</a>
@@ -1375,42 +1377,56 @@ validation algorithm as defined Section 6 of <span>[<a href="#RFC5280" class="ci
 the need to convert domain labels to their Unicode representation.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
 work needed.  They are considered equivalent if there is an exact
-octet-for-octet match.  Comparison with email addresses such as
-internationalized email address or rfc822Name requires additional
-setup steps for domain part and Local-part.  The initial preparation
-for the email addresses is to remove any phrases, comments, and "&lt;"
-or "&gt;" characters.  This document calls for comparison of domain
-labels that include non-ASCII characters to be transformed to
-A-labels if not already in that form.  The first step is to detect
-use of the U-label by using Section 5.1 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.  Next, if
-necessary, transform any U-labels (Unicode) to A-labels (ASCII) as
-specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.
-For ASCII NR-LDH labels, uppercase letters are converted to lowercase
-letters.  In setup for SmtpUTF8Mailbox, the email address Local-part
-<span class="bcp14">MUST</span> conform to the requirements of <span>[<a href="#RFC6530" class="cite xref">RFC6530</a>]</span> and <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span>,
-including being a string in UTF-8 form.  In particular, the local-
-part <span class="bcp14">MUST NOT</span> be transformed in any way, such as by doing case
-folding or normalization of any kind.  The <code>Local-part</code> part of an
-internationalized email address is already in UTF-8.  For rfc822Name,
-the Local-part, which is IA5String (ASCII), trivially maps to UTF-8
-without change.  Once setup is complete, they are again compared
-octet for octet.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">To summarize non-normatively, the comparison steps, including setup,
-are:<a href="#section-5-3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5-4">
-<li id="section-5-4.1">If the domain contains U-labels, transform them to A-labels.<a href="#section-5-4.1" class="pilcrow">¶</a>
+octet-for-octet match.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Comparison of a SmtpUTF8Mailbox and rfc822Name will always fail.
+SmtpUTF8Mailbox values <span class="bcp14">SHALL</span> contain a Local-part which includes
+one or more non-ASCII characters, while rfc822Names only
+include ASCII characters (including the Local-part). Thus, a
+SmtpUTF8Mailbox and rfc822Name will never match.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Comparison of SmtpUTF8Mailbox values with internationalized email
+addresses from other sources (such as received email messages, user
+input, etc.) requires additional setup steps for domain part and
+Local-part. The initial preparation for the email address to compare
+with the SmtpUTF8Mailbox value is to remove any phrases, comments, and
+"&lt;" or "&gt;" characters.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">For the setup of the domain part, the following conversions <span class="bcp14">SHALL</span> be
+performed:<a href="#section-5-5" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5-6">
+<li id="section-5-6.1">Convert all labels which constitute the domain part that include
+non-ASCII characters to A-labels if not already in that form.
+ a. Detect all U-labels present within the domain part using
+    Section 5.1 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.
+ b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
+    specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.<a href="#section-5-6.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-5-4.2">If the domain contains ASCII NR-LDH labels, lowercase them.<a href="#section-5-4.2" class="pilcrow">¶</a>
-</li>
-        <li id="section-5-4.3">Compare strings octet for octet for equivalence.<a href="#section-5-4.3" class="pilcrow">¶</a>
+        <li id="section-5-6.2">Convert all uppercase letters found within the NR-LDH and A-label
+labels which constitute the domain part to lowercase letters.<a href="#section-5-6.2" class="pilcrow">¶</a>
 </li>
       </ol>
-<p id="section-5-5">This specification expressly does not define any wildcard characters,
+<p id="section-5-7">For the setup of the Local-part, the Local-part <span class="bcp14">MUST</span> be verified to
+conform to the requirements of <span>[<a href="#RFC6530" class="cite xref">RFC6530</a>]</span> and <span>[<a href="#RFC6531" class="cite xref">RFC6531</a>]</span>, including
+being a string in UTF-8 form.  In particular, the Local-
+part <span class="bcp14">MUST NOT</span> be transformed in any way, such as by doing case
+folding or normalization of any kind.  The <code>Local-part</code> part of an
+internationalized email address is already in UTF-8. Once setup is
+complete, they are again compared octet-for-octet.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8">To summarize non-normatively, the comparison steps, including setup,
+are:<a href="#section-5-8" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5-9">
+<li id="section-5-9.1">If the domain contains U-labels, transform them to A-labels.<a href="#section-5-9.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-5-9.2">If any NR-LDH or A-label domain label in the domain part
+contains uppercase letters, lowercase them.<a href="#section-5-9.2" class="pilcrow">¶</a>
+</li>
+        <li id="section-5-9.3">Compare strings octet-for-octet for equivalence.<a href="#section-5-9.3" class="pilcrow">¶</a>
+</li>
+      </ol>
+<p id="section-5-10">This specification expressly does not define any wildcard characters,
 and SmtpUTF8Mailbox comparison implementations <span class="bcp14">MUST NOT</span> interpret any
 characters as wildcards.  Instead, to specify multiple email
 addresses through SmtpUTF8Mailbox, the certificate <span class="bcp14">MUST</span> use multiple
 subjectAltNames or issuerAltNames to explicitly carry any additional
-email addresses.<a href="#section-5-5" class="pilcrow">¶</a></p>
+email addresses.<a href="#section-5-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="name-constraints">
@@ -1439,22 +1455,22 @@ all mailboxes in a domain and deprecates rfc822Name name constraints
 that represent a particular mailbox.  That is, rfc822Name constraints
 with a Local-part <span class="bcp14">SHOULD NOT</span> be used.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
-the setup steps defined by Section 5.  Setup converts the inputs of
+the setup steps defined by <a href="#name-matching" class="auto internal xref">Section 5</a>.  Setup converts the inputs of
 the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
-name constraint and the subject, this will
-lowercase any domain NR-LDH labels.  Strip the Local-part and "@"
+name constraint and the subject, this will convert all A-labels and
+NR-LDH labels to lowercase. Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> as follows.  If the resulting name
 constraint domain starts with a "." character, then for the name
 constraint to match, a suffix of the resulting subject alternative
 name domain <span class="bcp14">MUST</span> match the name constraint (including the leading
-".") octet for octet.  If the resulting name constraint domain does
+".") octet-for-octet.  If the resulting name constraint domain does
 not start with a "." character, then for the name constraint to
 match, the entire resulting subject alternative name domain <span class="bcp14">MUST</span>
-match the name constraint octet for octet.<a href="#section-6-3" class="pilcrow">¶</a></p>
+match the name constraint octet-for-octet.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">Certificate Authorities that wish to issue CA certificates with email
 address name constraints <span class="bcp14">MUST</span> use rfc822Name subject alternative
 names only.  These <span class="bcp14">MUST</span> be IDNA2008-conformant names with no mappings
@@ -1497,7 +1513,7 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 |        (1)                                                        |
 |                                                                   |
 |      rfc822Name: student@xn--pss25c.example.com (2)               |
-|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)   |
+|      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)     |
 |                                                                   |
 +-------------------------------------------------------------------+
 </pre>
