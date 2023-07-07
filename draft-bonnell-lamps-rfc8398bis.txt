@@ -5,7 +5,7 @@
 Network Working Group                                        A. Melnikov
 Internet-Draft                                                 Isode Ltd
 Obsoletes: 8398 (if approved)                                  W. Chuang
-Updates: 5820 (if approved)                                 Google, Inc.
+Updates: 5280 (if approved)                                 Google, Inc.
 Intended status: Standards Track                              C. Bonnell
 Expires: 8 January 2024                                         DigiCert
                                                              7 July 2023
