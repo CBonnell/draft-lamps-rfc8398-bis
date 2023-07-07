@@ -15,20 +15,20 @@ Name extension that allows a certificate subject to be associated
 with an internationalized email address. 
        This document updates RFC 5280 and obsoletes RFC 8398. 
     " name="description">
-<meta content="xml2rfc 3.17.3" name="generator">
+<meta content="xml2rfc 3.17.4" name="generator">
 <meta content="EAI" name="keyword">
 <meta content="PKIX" name="keyword">
 <meta content="email address" name="keyword">
 <meta content="draft-bonnell-lamps-rfc8398bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.3
+  xml2rfc 3.17.4
     Python 3.11.4
-    appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
+    platformdirs 3.8.0
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.31.0
@@ -1055,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">I18N Mail Addresses in X.509 Certificate</td>
-<td class="right">June 2023</td>
+<td class="right">July 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Melnikov, et al.</td>
-<td class="center">Expires 22 December 2023</td>
+<td class="center">Expires 8 January 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1078,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc5820" class="eref">5820</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-06-20" class="published">20 June 2023</time>
+<time datetime="2023-07-07" class="published">7 July 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-22">22 December 2023</time></dd>
+<dd class="expires"><time datetime="2024-01-08">8 January 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1145,7 +1145,7 @@ with an internationalized email address.<a href="#section-abstract-1" class="pil
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1362,7 +1362,7 @@ SmtpUTF8Mailbox and rfc822Name in subjectAltName, issuerAltName, and
 anywhere else that these are used.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="matching-of-internationalized-email-addresses-in-x509-certificates">
+<div id="name-matching">
 <section id="section-5">
       <h2 id="name-matching-of-internationaliz">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-matching-of-internationaliz" class="section-name selfRef">Matching of Internationalized Email Addresses in X.509 Certificates</a>
@@ -1384,7 +1384,8 @@ one or more non-ASCII characters, while rfc822Names only
 include ASCII characters (including the Local-part). Thus, a
 SmtpUTF8Mailbox and rfc822Name will never match.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <p id="section-5-4">Comparison of SmtpUTF8Mailbox values with internationalized email
-addresses requires additional setup steps for domain part and
+addresses from other sources (such as received email messages, user
+input, etc.) requires additional setup steps for domain part and
 Local-part. The initial preparation for the email address to compare
 with the SmtpUTF8Mailbox value is to remove any phrases, comments, and
 "&lt;" or "&gt;" characters.<a href="#section-5-4" class="pilcrow">¶</a></p>
@@ -1454,12 +1455,12 @@ all mailboxes in a domain and deprecates rfc822Name name constraints
 that represent a particular mailbox.  That is, rfc822Name constraints
 with a Local-part <span class="bcp14">SHOULD NOT</span> be used.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">Constraint comparison with SmtpUTF8Mailbox subjectAltName starts with
-the setup steps defined by Section 5.  Setup converts the inputs of
+the setup steps defined by <a href="#name-matching" class="auto internal xref">Section 5</a>.  Setup converts the inputs of
 the comparison (which is one of a subject distinguished name, an
 rfc822Name, or an SmtpUTF8Mailbox subjectAltName, and one of an
 rfc822Name name constraint) to constraint comparison form. For both the
-name constraint and the subject, this will
- any domain NR-LDH labels.  Strip the Local-part and "@"
+name constraint and the subject, this will convert all A-labels and
+NR-LDH labels to lowercase. Strip the Local-part and "@"
 separator from each rfc822Name and SmtpUTF8Mailbox, leaving just the
 domain part.  After setup, this follows the comparison steps defined
 in Section 4.2.1.10 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> as follows.  If the resulting name
