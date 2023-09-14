@@ -3,7 +3,7 @@ title: "Internationalized Email Addresses in X.509 Certificates"
 abbrev: "I18N Mail Addresses in X.509 Certificates"
 category: std
 
-docname: draft-bonnell-lamps-rfc8398bis-latest
+docname: draft-ietf-lamps-rfc8398bis-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
