@@ -122,8 +122,7 @@ SmtpUTF8Mailbox ::= UTF8String (SIZE (1..MAX))
 When the subjectAltName (or issuerAltName) extension contains an
 internationalized email address with a non-ASCII Local-part, the
 address MUST be stored in the SmtpUTF8Mailbox name form of otherName.
-The format of SmtpUTF8Mailbox is defined as the ABNF rule
-SmtpUTF8Mailbox.  SmtpUTF8Mailbox is a modified version of the
+The format of SmtpUTF8Mailbox is a modified version of the
 internationalized Mailbox that was defined in Section 3.3 of
 {{RFC6531}}, which was derived from Mailbox as defined in Section 4.1.2
 of {{RFC5321}}.  {{RFC6531}} defines the following ABNF rules for Mailbox
@@ -457,9 +456,12 @@ program.
 # Acknowledgments
 {:numbered="false"}
 
-TODO
+The authors thank David Benjamin for providing the motivation for this
+document. Additionally, the authors thank Rich Salz and Russ Housley
+for their reviews and feedback which meaningfully improved the document.
 
-Previous document:
+The authors also recognize and appreciate the following individuals for
+their contributions to the previous version of this document:
 
 Thank you to Magnus Nystrom for motivating this document.  Thanks to
 Russ Housley, Nicolas Lidzborski, Laetitia Baudoin, Ryan Sleevi, Sean
@@ -469,7 +471,3 @@ on internationalization, Unicode, and ABNF formatting; to Jim Schaad
 for his help with the ASN.1 example and his helpful feedback; and
 especially to Viktor Dukhovni for helping us with name constraints
 and his many detailed document reviews.
-
-This document:
-
-David Benjamin
