@@ -465,8 +465,9 @@ program.
 {:numbered="false"}
 
 The authors thank David Benjamin for providing the motivation for this
-document. Additionally, the authors thank Rich Salz and Russ Housley
-for their reviews and feedback which meaningfully improved the document.
+document. Additionally, the authors thank Rich Salz, Russ Housley, and
+Tim Hollebeek for their reviews and feedback which meaningfully improved
+the document.
 
 The authors also recognize and appreciate the following individuals for
 their contributions to the previous version of this document:
