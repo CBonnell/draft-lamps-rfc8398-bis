@@ -95,7 +95,7 @@ document requires all email address domains in X.509 certificates to
 conform to IDNA2008 {{!RFC5890}}.
 
 This document obsoletes [RFC8398]. The primary motivation for
-publication of this document is to simply the encoding of domain labels
+publication of this document is to simplify the encoding of domain labels
 found in the domain part of internationalized email addresses. In
 particular, [RFC8398] specifies that domain labels are conditionally
 encoded using either A-labels or U-labels. This specification simplifies
