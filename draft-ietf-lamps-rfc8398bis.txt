@@ -7,8 +7,8 @@ Internet-Draft                                                 Isode Ltd
 Obsoletes: 8398 (if approved)                                  W. Chuang
 Updates: 5280 (if approved)                                 Google, Inc.
 Intended status: Standards Track                              C. Bonnell
-Expires: 12 April 2024                                          DigiCert
-                                                         10 October 2023
+Expires: 15 June 2024                                           DigiCert
+                                                        13 December 2023
 
 
         Internationalized Email Addresses in X.509 Certificates
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2024.
+   This Internet-Draft will expire on 15 June 2024.
 
 Copyright Notice
 
@@ -103,6 +103,14 @@ Table of Contents
    represent internationalized email addresses.  In addition this
    document requires all email address domains in X.509 certificates to
    conform to IDNA2008 [RFC5890].
+
+   This document obsoletes [RFC8398].  The primary motivation for
+   publication of this document is to simplify the encoding of domain
+   labels found in the domain part of internationalized email addresses.
+   In particular, [RFC8398] specifies that domain labels are
+   conditionally encoded using either A-labels or U-labels.  This
+   specification simplifies encoding and processing of domain labels by
+   mandating that the A-label representation be used in all cases.
 
 2.  Conventions and Definitions
 
@@ -540,9 +548,9 @@ Appendix B.  Example of SmtpUTF8Mailbox
 Acknowledgments
 
    The authors thank David Benjamin for providing the motivation for
-   this document.  Additionally, the authors thank Rich Salz and Russ
-   Housley for their reviews and feedback which meaningfully improved
-   the document.
+   this document.  Additionally, the authors thank Rich Salz, Russ
+   Housley, and Tim Hollebeek for their reviews and feedback which
+   meaningfully improved the document.
 
    The authors also recognize and appreciate the following individuals
    for their contributions to the previous version of this document:
