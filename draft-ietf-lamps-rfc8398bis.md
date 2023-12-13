@@ -94,6 +94,14 @@ represent internationalized email addresses.  In addition this
 document requires all email address domains in X.509 certificates to
 conform to IDNA2008 {{!RFC5890}}.
 
+This document obsoletes [RFC8398]. The primary motivation for
+publication of this document is to simplify the encoding of domain labels
+found in the domain part of internationalized email addresses. In
+particular, [RFC8398] specifies that domain labels are conditionally
+encoded using either A-labels or U-labels. This specification simplifies
+encoding and processing of domain labels by mandating that the A-label
+representation be used in all cases.
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
@@ -457,8 +465,9 @@ program.
 {:numbered="false"}
 
 The authors thank David Benjamin for providing the motivation for this
-document. Additionally, the authors thank Rich Salz and Russ Housley
-for their reviews and feedback which meaningfully improved the document.
+document. Additionally, the authors thank Rich Salz, Russ Housley, and
+Tim Hollebeek for their reviews and feedback which meaningfully improved
+the document.
 
 The authors also recognize and appreciate the following individuals for
 their contributions to the previous version of this document:
