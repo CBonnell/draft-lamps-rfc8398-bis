@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-12T00:51:59.065857+00:00",
+  "timestamp": "2023-12-14T00:50:40.362923+00:00",
   "repo": "CBonnell/draft-lamps-rfc8398-bis",
   "labels": [
     {
@@ -139,6 +139,34 @@
           ]
         }
       ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJpSQnc5h001n",
+      "title": "Add relation to RFC8398 in intro",
+      "url": "https://github.com/CBonnell/draft-lamps-rfc8398-bis/pull/2",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-12T18:42:19Z",
+      "updatedAt": "2023-12-13T15:38:33Z",
+      "baseRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "baseRefName": "main",
+      "baseRefOid": "6665c3abda01774c6110f99f27991cc51c3b552f",
+      "headRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "headRefName": "intro-expand",
+      "headRefOid": "2f9ca460a20c3b22b5cf74bbf284ddcb45435611",
+      "closedAt": "2023-12-13T15:38:29Z",
+      "mergedAt": "2023-12-13T15:38:29Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "f4413283e3c35f448ffac634e20ae80dbfce7802"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
