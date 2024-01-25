@@ -7,8 +7,8 @@ Internet-Draft                                                 Isode Ltd
 Obsoletes: 8398 (if approved)                                  W. Chuang
 Updates: 5280 (if approved)                                 Google, Inc.
 Intended status: Standards Track                              C. Bonnell
-Expires: 15 June 2024                                           DigiCert
-                                                        13 December 2023
+Expires: 28 July 2024                                           DigiCert
+                                                         25 January 2024
 
 
         Internationalized Email Addresses in X.509 Certificates
@@ -57,11 +57,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2024.
+   This Internet-Draft will expire on 28 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -395,6 +395,10 @@ Table of Contents
        labels that are encoded using their A-label representation.
 
 9.  IANA Considerations
+
+   Update the document reference for the id-mod-lamps-eai-addresses-2016
+   module in the "SMI Security for PKIX Module Identifier"
+   (1.3.6.1.5.5.7.0) registry from RFC 8398 to this document.
 
    Update the document reference for the SmtpUTF8Mailbox otherName in
    the "SMI Security for PKIX Other Name Forms" (1.3.6.1.5.5.7.8)
