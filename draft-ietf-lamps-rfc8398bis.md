@@ -374,6 +374,10 @@ that are encoded using their A-label representation.
 
 # IANA Considerations
 
+Update the document reference for the id-mod-lamps-eai-addresses-2016
+module in the "SMI Security for PKIX Module Identifier"
+(1.3.6.1.5.5.7.0) registry from RFC 8398 to this document.
+
 Update the document reference for the SmtpUTF8Mailbox otherName in the
 "SMI Security for PKIX Other Name Forms" (1.3.6.1.5.5.7.8) registry
 from RFC 8398 to this document.
