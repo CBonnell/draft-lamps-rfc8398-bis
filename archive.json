@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-25T00:53:20.741207+00:00",
+  "timestamp": "2024-01-28T00:51:26.916304+00:00",
   "repo": "CBonnell/draft-lamps-rfc8398-bis",
   "labels": [
     {
@@ -164,6 +164,34 @@
       "mergedBy": "CBonnell",
       "mergeCommit": {
         "oid": "f4413283e3c35f448ffac634e20ae80dbfce7802"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOJpSQnc5lHDPO",
+      "title": "Add IANA change for ASN.1 module",
+      "url": "https://github.com/CBonnell/draft-lamps-rfc8398-bis/pull/3",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-25T22:01:43Z",
+      "updatedAt": "2024-01-25T22:04:47Z",
+      "baseRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "baseRefName": "main",
+      "baseRefOid": "f4413283e3c35f448ffac634e20ae80dbfce7802",
+      "headRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "headRefName": "iana-considerations",
+      "headRefOid": "165035d6c07927ae22d6ca3efa180ca4ad38bc95",
+      "closedAt": "2024-01-25T22:04:44Z",
+      "mergedAt": "2024-01-25T22:04:44Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "a484b3d2f5be5f4bc90b3a9afbbcee0158bcedfb"
       },
       "comments": [],
       "reviews": []
