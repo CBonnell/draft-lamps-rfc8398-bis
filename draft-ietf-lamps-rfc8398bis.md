@@ -227,6 +227,7 @@ performed:
 
    a. Detect all U-labels present within the domain part using
       Section 5.1 of {{!RFC5891}}.
+
    b. Transform all detected U-labels (Unicode) to A-labels (ASCII)
       as specified in Section 5.5 of {{RFC5891}}.
 
