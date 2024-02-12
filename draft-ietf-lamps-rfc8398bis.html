@@ -15,20 +15,20 @@ Name extension that allows a certificate subject to be associated
 with an internationalized email address. 
        This document updates RFC 5280 and obsoletes RFC 8398. 
     " name="description">
-<meta content="xml2rfc 3.19.1" name="generator">
+<meta content="xml2rfc 3.19.2" name="generator">
 <meta content="EAI" name="keyword">
 <meta content="PKIX" name="keyword">
 <meta content="email address" name="keyword">
 <meta content="draft-ietf-lamps-rfc8398bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.1
+  xml2rfc 3.19.2
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.1.0
+    platformdirs 4.2.0
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
@@ -1033,11 +1033,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">I18N Mail Addresses in X.509 Certificate</td>
-<td class="right">January 2024</td>
+<td class="right">February 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Melnikov, et al.</td>
-<td class="center">Expires 28 July 2024</td>
+<td class="center">Expires 15 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc5280" class="eref">5280</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-25" class="published">25 January 2024</time>
+<time datetime="2024-02-12" class="published">12 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-28">28 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-15">15 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ with an internationalized email address.<a href="#section-abstract-1" class="pil
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1296,8 +1296,8 @@ common name) before it, has no comment (text surrounded in parentheses)
 after it, and is not surrounded by "&lt;" and "&gt;" characters.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Due to name constraint compatibility reasons described in <a href="#name-constraints" class="auto internal xref">Section 6</a>,
 SmtpUTF8Mailbox subjectAltName <span class="bcp14">MUST NOT</span> be used unless the Local-part
-of the email address contains non-ASCII characters.  When the Local-
-part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
+of the email address contains non-ASCII characters.  When the
+Local-part is ASCII, rfc822Name subjectAltName <span class="bcp14">MUST</span> be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
 usage of rfc822Name and SmtpUTF8Mailbox is summarized in Table 1
@@ -1357,7 +1357,7 @@ Local-parts is always UTF-8.  The comparison form for domain parts
 is always performed with the LDH-label (<span>[<a href="#RFC5890" class="cite xref">RFC5890</a>]</span>) encoding of the
 relevant domain labels. The comparison of LDH-labels in domain parts
 reduces complexity for implementations of the certification path
-validation algorithm as defined Section 6 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> by obviating
+validation algorithm as defined in Section 6 of <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> by obviating
 the need to convert domain labels to their Unicode representation.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
 work needed.  They are considered equivalent if there is an exact
@@ -1378,11 +1378,13 @@ performed:<a href="#section-5-5" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5-6">
 <li id="section-5-6.1">
           <p id="section-5-6.1.1">Convert all labels which constitute the domain part that include
-non-ASCII characters to A-labels if not already in that form.
- a. Detect all U-labels present within the domain part using
-    Section 5.1 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.
- b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
-    specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.<a href="#section-5-6.1.1" class="pilcrow">¶</a></p>
+non-ASCII characters to A-labels if not already in that form.<a href="#section-5-6.1.1" class="pilcrow">¶</a></p>
+<p id="section-5-6.1.2">
+a. Detect all U-labels present within the domain part using
+   Section 5.1 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.<a href="#section-5-6.1.2" class="pilcrow">¶</a></p>
+<p id="section-5-6.1.3">
+b. Transform all detected U-labels (Unicode) to A-labels (ASCII)
+   as specified in Section 5.5 of <span>[<a href="#RFC5891" class="cite xref">RFC5891</a>]</span>.<a href="#section-5-6.1.3" class="pilcrow">¶</a></p>
 </li>
         <li id="section-5-6.2">
           <p id="section-5-6.2.1">Convert all uppercase letters found within the NR-LDH and A-label
@@ -1497,7 +1499,7 @@ domain.<a href="#section-6-5" class="pilcrow">¶</a></p>
 +-------------------------------------------------------------------+
 |  Entity Cert (w/explicitly permitted subjects)                    |
 |    SubjectAltName Extension                                       |
-|      rfc822Name: student@elemenary.school.example.com (1)         |
+|      rfc822Name: student@elementary.school.example.com (1)         |
 |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
 |        (1)                                                        |
 |                                                                   |
@@ -1744,9 +1746,9 @@ program.<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="appendix-C-1">The authors thank David Benjamin for providing the motivation for this
-document. Additionally, the authors thank Rich Salz, Russ Housley, and
-Tim Hollebeek for their reviews and feedback which meaningfully improved
-the document.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+document. Additionally, the authors thank Éric Vyncke, Peter van Dijk,
+Rich Salz, Russ Housley, and Tim Hollebeek for their reviews and
+feedback which meaningfully improved the document.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">The authors also recognize and appreciate the following individuals for
 their contributions to the previous version of this document:<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <p id="appendix-C-3">Thank you to Magnus Nystrom for motivating this document.  Thanks to

@@ -7,8 +7,8 @@ Internet-Draft                                                 Isode Ltd
 Obsoletes: 8398 (if approved)                                  W. Chuang
 Updates: 5280 (if approved)                                 Google, Inc.
 Intended status: Standards Track                              C. Bonnell
-Expires: 28 July 2024                                           DigiCert
-                                                         25 January 2024
+Expires: 15 August 2024                                         DigiCert
+                                                        12 February 2024
 
 
         Internationalized Email Addresses in X.509 Certificates
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 July 2024.
+   This Internet-Draft will expire on 15 August 2024.
 
 Copyright Notice
 
@@ -217,8 +217,8 @@ Table of Contents
    performed with the LDH-label ([RFC5890]) encoding of the relevant
    domain labels.  The comparison of LDH-labels in domain parts reduces
    complexity for implementations of the certification path validation
-   algorithm as defined Section 6 of [RFC5280] by obviating the need to
-   convert domain labels to their Unicode representation.
+   algorithm as defined in Section 6 of [RFC5280] by obviating the need
+   to convert domain labels to their Unicode representation.
 
    Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
    work needed.  They are considered equivalent if there is an exact
@@ -241,11 +241,13 @@ Table of Contents
    performed:
 
    1.  Convert all labels which constitute the domain part that include
-       non-ASCII characters to A-labels if not already in that form.  a.
-       Detect all U-labels present within the domain part using
-       Section 5.1 of [RFC5891].  b.  Transform all detected U-labels
-       (Unicode) to A-labels (ASCII) as specified in Section 5.5 of
-       [RFC5891].
+       non-ASCII characters to A-labels if not already in that form.
+
+       a.  Detect all U-labels present within the domain part using
+       Section 5.1 of [RFC5891].
+
+       b.  Transform all detected U-labels (Unicode) to A-labels (ASCII)
+       as specified in Section 5.5 of [RFC5891].
 
    2.  Convert all uppercase letters found within the NR-LDH and A-label
        labels which constitute the domain part to lowercase letters.
@@ -334,34 +336,34 @@ Table of Contents
    encoded as rfc822Name despite also having Unicode present in the
    domain.
 
-   +-------------------------------------------------------------------+
-   |  Root CA Cert                                                     |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Intermediate CA Cert                                             |
-   |      Permitted                                                    |
-   |        rfc822Name: elementary.school.example.com (1)              |
-   |                                                                   |
-   |        rfc822Name: xn--pss25c.example.com (2)                     |
-   |                                                                   |
-   +-------------------------------------------------------------------+
-                                     |
-                                     v
-   +-------------------------------------------------------------------+
-   |  Entity Cert (w/explicitly permitted subjects)                    |
-   |    SubjectAltName Extension                                       |
-   |      rfc822Name: student@elemenary.school.example.com (1)         |
-   |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
-   |        (1)                                                        |
-   |                                                                   |
-   |      rfc822Name: student@xn--pss25c.example.com (2)               |
-   |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)     |
-   |                                                                   |
-   +-------------------------------------------------------------------+
+  +-------------------------------------------------------------------+
+  |  Root CA Cert                                                     |
+  +-------------------------------------------------------------------+
+                                    |
+                                    v
+  +-------------------------------------------------------------------+
+  |  Intermediate CA Cert                                             |
+  |      Permitted                                                    |
+  |        rfc822Name: elementary.school.example.com (1)              |
+  |                                                                   |
+  |        rfc822Name: xn--pss25c.example.com (2)                     |
+  |                                                                   |
+  +-------------------------------------------------------------------+
+                                    |
+                                    v
+  +-------------------------------------------------------------------+
+  |  Entity Cert (w/explicitly permitted subjects)                    |
+  |    SubjectAltName Extension                                       |
+  |      rfc822Name: student@elementary.school.example.com (1)         |
+  |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
+  |        (1)                                                        |
+  |                                                                   |
+  |      rfc822Name: student@xn--pss25c.example.com (2)               |
+  |      SmtpUTF8Mailbox: u+533Bu+751F@xn--pss25c.example.com (2)     |
+  |                                                                   |
+  +-------------------------------------------------------------------+
 
-        Figure 1: Name Constraints with SmtpUTF8Name and rfc822Name
+       Figure 1: Name Constraints with SmtpUTF8Name and rfc822Name
 
 7.  Security Considerations
 
@@ -552,9 +554,9 @@ Appendix B.  Example of SmtpUTF8Mailbox
 Acknowledgments
 
    The authors thank David Benjamin for providing the motivation for
-   this document.  Additionally, the authors thank Rich Salz, Russ
-   Housley, and Tim Hollebeek for their reviews and feedback which
-   meaningfully improved the document.
+   this document.  Additionally, the authors thank Éric Vyncke, Peter
+   van Dijk, Rich Salz, Russ Housley, and Tim Hollebeek for their
+   reviews and feedback which meaningfully improved the document.
 
    The authors also recognize and appreciate the following individuals
    for their contributions to the previous version of this document:
