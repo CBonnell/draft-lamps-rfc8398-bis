@@ -241,9 +241,9 @@ Table of Contents
    performed:
 
    1.  Convert all labels which constitute the domain part that include
-       non-ASCII characters to A-labels if not already in that form.  i.
+       non-ASCII characters to A-labels if not already in that form. a.
        Detect all U-labels present within the domain part using
-       Section 5.1 of [RFC5891].  ii.  Transform all detected U-labels
+       Section 5.1 of [RFC5891]. b.  Transform all detected U-labels
        (Unicode) to A-labels (ASCII) as specified in Section 5.5 of
        [RFC5891].
 
