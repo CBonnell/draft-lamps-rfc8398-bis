@@ -162,8 +162,8 @@ after it, and is not surrounded by "<" and ">" characters.
 
 Due to name constraint compatibility reasons described in {{name-constraints}},
 SmtpUTF8Mailbox subjectAltName MUST NOT be used unless the Local-part
-of the email address contains non-ASCII characters.  When the Local-
-part is ASCII, rfc822Name subjectAltName MUST be used instead of
+of the email address contains non-ASCII characters.  When the
+Local-part is ASCII, rfc822Name subjectAltName MUST be used instead of
 SmtpUTF8Mailbox.  This is compatible with legacy software that
 supports only rfc822Name (and not SmtpUTF8Mailbox).  The appropriate
 usage of rfc822Name and SmtpUTF8Mailbox is summarized in Table 1
@@ -199,7 +199,7 @@ Local-parts is always UTF-8.  The comparison form for domain parts
 is always performed with the LDH-label ({{RFC5890}}) encoding of the
 relevant domain labels. The comparison of LDH-labels in domain parts
 reduces complexity for implementations of the certification path
-validation algorithm as defined Section 6 of {{RFC5280}} by obviating
+validation algorithm as defined in Section 6 of {{RFC5280}} by obviating
 the need to convert domain labels to their Unicode representation.
 
 Comparison of two SmtpUTF8Mailboxes is straightforward with no setup
@@ -224,10 +224,10 @@ performed:
 
 1. Convert all labels which constitute the domain part that include
    non-ASCII characters to A-labels if not already in that form.
-    a. Detect all U-labels present within the domain part using
-       Section 5.1 of {{!RFC5891}}.
-    b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
-       specified in Section 5.5 of {{RFC5891}}.
+     a. Detect all U-labels present within the domain part using
+        Section 5.1 of {{!RFC5891}}.
+     b. Transform all detected U-labels (Unicode) to A-labels (ASCII) as
+        specified in Section 5.5 of {{RFC5891}}.
 2. Convert all uppercase letters found within the NR-LDH and A-label
    labels which constitute the domain part to lowercase letters.
 
@@ -332,7 +332,7 @@ domain.
 +-------------------------------------------------------------------+
 |  Entity Cert (w/explicitly permitted subjects)                    |
 |    SubjectAltName Extension                                       |
-|      rfc822Name: student@elemenary.school.example.com (1)         |
+|      rfc822Name: student@elementary.school.example.com (1)         |
 |      SmtpUTF8Mailbox: u+5B66u+751F@elementary.school.example.com  |
 |        (1)                                                        |
 |                                                                   |
@@ -469,9 +469,9 @@ program.
 {:numbered="false"}
 
 The authors thank David Benjamin for providing the motivation for this
-document. Additionally, the authors thank Rich Salz, Russ Housley, and
-Tim Hollebeek for their reviews and feedback which meaningfully improved
-the document.
+document. Additionally, the authors thank Éric Vyncke, Peter van Dijk,
+Rich Salz, Russ Housley, and Tim Hollebeek for their reviews and
+feedback which meaningfully improved the document.
 
 The authors also recognize and appreciate the following individuals for
 their contributions to the previous version of this document:
