@@ -224,10 +224,10 @@ performed:
 
 1. Convert all labels which constitute the domain part that include
    non-ASCII characters to A-labels if not already in that form.
-    i. Detect all U-labels present within the domain part using
-       Section 5.1 of {{!RFC5891}}.
-    ii. Transform all detected U-labels (Unicode) to A-labels (ASCII)
-       as specified in Section 5.5 of {{RFC5891}}.
+   a. Detect all U-labels present within the domain part using
+      Section 5.1 of {{!RFC5891}}.
+   b. Transform all detected U-labels (Unicode) to A-labels (ASCII)
+      as specified in Section 5.5 of {{RFC5891}}.
 2. Convert all uppercase letters found within the NR-LDH and A-label
    labels which constitute the domain part to lowercase letters.
 
