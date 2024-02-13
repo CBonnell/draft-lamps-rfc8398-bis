@@ -369,10 +369,7 @@ Certification Authority issuing certificates containing
 `SmtpUTF8Mailbox` values, this specification requires an octet-for-octet
 comparison of the Local-part. However, requiring the use of binary
 comparison may raise interoperability concerns where the mail system
-employs one encoding and the Certification Authority employs another. To
-mitigate against such interoperability issues, the Certification
-Authority SHOULD use the same encoding as the one used by the mail
-system.
+employs one encoding and the Certification Authority employs another.
 
 # Differences from RFC 8398
 
