@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-11T00:52:06.030068+00:00",
+  "timestamp": "2024-02-13T00:48:48.213542+00:00",
   "repo": "CBonnell/draft-lamps-rfc8398-bis",
   "labels": [
     {
@@ -192,6 +192,34 @@
       "mergedBy": "CBonnell",
       "mergeCommit": {
         "oid": "a484b3d2f5be5f4bc90b3a9afbbcee0158bcedfb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOJpSQnc5mqrm3",
+      "title": "Directorate reviews",
+      "url": "https://github.com/CBonnell/draft-lamps-rfc8398-bis/pull/4",
+      "state": "MERGED",
+      "author": "CBonnell",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-12T18:29:22Z",
+      "updatedAt": "2024-02-12T18:30:51Z",
+      "baseRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "baseRefName": "main",
+      "baseRefOid": "a484b3d2f5be5f4bc90b3a9afbbcee0158bcedfb",
+      "headRepository": "CBonnell/draft-lamps-rfc8398-bis",
+      "headRefName": "directorate-reviews",
+      "headRefOid": "042cda79539c764880ad0c607906350f171d3492",
+      "closedAt": "2024-02-12T18:30:48Z",
+      "mergedAt": "2024-02-12T18:30:48Z",
+      "mergedBy": "CBonnell",
+      "mergeCommit": {
+        "oid": "ce434bdb88e8f3984070eaf5f0e9ec9005ffab47"
       },
       "comments": [],
       "reviews": []
