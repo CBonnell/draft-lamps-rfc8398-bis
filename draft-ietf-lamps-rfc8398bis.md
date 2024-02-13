@@ -359,6 +359,21 @@ recipient.  The former document references some means to mitigate
 against these attacks.  See {{WEBER}} for more background on security
 issues with Unicode.
 
+Additionally, it is possible to encode a string of Unicode
+user-perceived characters in multiple ways. While various Unicode
+normalization forms exist, {{RFC6531}} does not mandate the use of any
+such forms for the encoding of the Local-part. Thus, it may be possible
+to encode a Local-part value in multiple ways. To mitigate against
+attacks where different encodings are used by the mail system and the
+Certification Authority issuing certificates containing
+`SmtpUTF8Mailbox` values, this specification requires an octet-for-octet
+comparison of the Local-part. However, requiring the use of binary
+comparison may raise interoperability concerns where the mail system
+employs one encoding and the Certification Authority employs another. To
+mitigate against such interoperability issues, the Certification
+Authority SHOULD use the same encoding as the one used by the mail
+system.
+
 # Differences from RFC 8398
 
 This document obsoletes {{!RFC8398}}. There are three major changes
@@ -472,9 +487,9 @@ program.
 {:numbered="false"}
 
 The authors thank David Benjamin for providing the motivation for this
-document. Additionally, the authors thank Éric Vyncke, Peter van Dijk,
-Rich Salz, Russ Housley, and Tim Hollebeek for their reviews and
-feedback which meaningfully improved the document.
+document. Additionally, the authors thank Éric Vyncke, John Levine,
+Peter van Dijk, Rich Salz, Russ Housley, and Tim Hollebeek for their
+reviews and feedback which meaningfully improved the document.
 
 The authors also recognize and appreciate the following individuals for
 their contributions to the previous version of this document:
